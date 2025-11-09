@@ -1,0 +1,1029 @@
+[
+  {
+    "url": "https://www.immadea.net/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:20:15.982Z",
+    "success": true,
+    "allLinksCount": 102,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 122
+  },
+  {
+    "url": "https://www.pierrick-metot.fr/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:20:16.725Z",
+    "success": true,
+    "allLinksCount": 170,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 121
+  },
+  {
+    "url": "https://www.annuaire-web.info/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:20:16.786Z",
+    "success": true,
+    "allLinksCount": 102,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 120
+  },
+  {
+    "url": "http://radiooloron.fr/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:20:17.552Z",
+    "success": true,
+    "allLinksCount": 3,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 119
+  },
+  {
+    "url": "http://www.immo-clip.com/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:20:19.413Z",
+    "success": true,
+    "allLinksCount": 88,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 116
+  },
+  {
+    "url": "http://www.le-site-du-mariage.com/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:20.201Z",
+    "success": true,
+    "allLinksCount": 57,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 115
+  },
+  {
+    "url": "http://www.mariage-coeurdefrance.com/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:21.037Z",
+    "success": true,
+    "allLinksCount": 66,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 114
+  },
+  {
+    "url": "http://www.bonconseil.fr/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:20:21.297Z",
+    "success": true,
+    "allLinksCount": 84,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 117
+  },
+  {
+    "url": "http://www.annuaire-au-feminin.net/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:22.264Z",
+    "success": true,
+    "allLinksCount": 102,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 113
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=42162",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:20:28.439Z",
+    "success": true,
+    "allLinksCount": 221,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国药妆店",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\"><u>法国药妆店</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 111
+  },
+  {
+    "url": "http://www.reussirnotremariage.com/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:28.972Z",
+    "success": true,
+    "allLinksCount": 133,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 112
+  },
+  {
+    "url": "http://www.recit.net/cartonner-lors-de-rendez-professionnels/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-business",
+    "scrapedAt": "2025-11-05T14:20:30.392Z",
+    "success": true,
+    "allLinksCount": 143,
+    "foundLink": {
+      "href": "https://tailortrucks.com/",
+      "text": "costume sur mesure",
+      "outerHTML": "<a href=\"https://tailortrucks.com/\">costume sur mesure</a>",
+      "matched": true,
+      "matchType": "subdomain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 109
+  },
+  {
+    "url": "https://www.clasificalia.com/1239/costume-de-mariage-sur-mesure-tous-les-avantages/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+    "scrapedAt": "2025-11-05T14:20:31.635Z",
+    "success": true,
+    "allLinksCount": 1,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 108
+  },
+  {
+    "url": "https://tendance-parisienne.com/mode-homme-le-luxe-du-costume-sur-mesure-dans-une-boutique-mobile/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-business",
+    "scrapedAt": "2025-11-05T14:20:33.829Z",
+    "success": true,
+    "allLinksCount": 158,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 107
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=42180",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:20:34.216Z",
+    "success": true,
+    "allLinksCount": 221,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国药妆店",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\"><u>法国药妆店</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 110
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=41883",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:20:39.225Z",
+    "success": true,
+    "allLinksCount": 223,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国药房保健品",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\"><u>法国药房保健品</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 106
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=41872",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:20:40.109Z",
+    "success": true,
+    "allLinksCount": 223,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国本土的小众药妆品牌",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\"><u>法国本土的小众药妆品牌</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 105
+  },
+  {
+    "url": "https://www.essentiel-du-mariage.com/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:41.457Z",
+    "success": true,
+    "allLinksCount": 113,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 104
+  },
+  {
+    "url": "http://www.carte-virtuelle.net/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:41.572Z",
+    "success": true,
+    "allLinksCount": 63,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 103
+  },
+  {
+    "url": "http://www.carrefourimmobilier.fr/programmes-immobiliers-neufs-en-ile-de-france-suivre-toute-lactualite-en-ligne/",
+    "landingPage": "https://programme-neuf-immobilier.fr/",
+    "scrapedAt": "2025-11-05T14:20:43.555Z",
+    "success": true,
+    "allLinksCount": 11,
+    "foundLink": {
+      "href": "https://programme-neuf-immobilier.fr/",
+      "text": "programme-neuf-immobilier.fr",
+      "outerHTML": "<a href=\"https://programme-neuf-immobilier.fr/\">programme-neuf-immobilier.fr</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 102
+  },
+  {
+    "url": "http://www.venteimmobilier.org/denicher-les-meilleurs-programmes-immobiliers-dans-la-region-ile-de-france-directement-en-ligne/",
+    "landingPage": "https://programme-neuf-immobilier.fr/",
+    "scrapedAt": "2025-11-05T14:20:43.628Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://programme-neuf-immobilier.fr/",
+      "text": "Choisir un programme neuf immobilier",
+      "outerHTML": "<a href=\"https://programme-neuf-immobilier.fr/\" target=\"_blank\" rel=\"\">Choisir un programme neuf immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 101
+  },
+  {
+    "url": "https://www.altitude-photo.com/",
+    "landingPage": "href=\"https://planetsono.com/853-location\"",
+    "scrapedAt": "2025-11-05T14:20:45.079Z",
+    "success": true,
+    "allLinksCount": 40,
+    "foundLink": {
+      "href": "https://planetsono.com/853-location",
+      "text": "location sono à Paris",
+      "outerHTML": "<a href=\"https://planetsono.com/853-location\">location sono à Paris</a>",
+      "matched": true,
+      "matchType": "subdomain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 99
+  },
+  {
+    "url": "http://www.vente-immobilier-neuf.fr/trouver-les-meilleurs-programmes-immobiliers-neufs-en-ile-de-france/",
+    "landingPage": "https://programme-neuf-immobilier.fr/",
+    "scrapedAt": "2025-11-05T14:20:45.777Z",
+    "success": true,
+    "allLinksCount": 22,
+    "foundLink": {
+      "href": "https://programme-neuf-immobilier.fr/",
+      "text": "programme-neuf-immobilier.fr",
+      "outerHTML": "<a href=\"https://programme-neuf-immobilier.fr/\">programme-neuf-immobilier.fr</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 98
+  },
+  {
+    "url": "http://tourisme-dentaire.net/",
+    "landingPage": "https://davidguenassia.com/les-implants-dentaires/",
+    "scrapedAt": "2025-11-05T14:20:46.691Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://tourisme-dentaire.net/\nCall log:\n\u001b[2m  - navigating to \"http://tourisme-dentaire.net/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 93
+  },
+  {
+    "url": "http://team-gvo.com/",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:20:47.385Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://team-gvo.com/\nCall log:\n\u001b[2m  - navigating to \"http://team-gvo.com/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 92
+  },
+  {
+    "url": "http://visi-ad.net/",
+    "landingPage": "https://davidguenassia.com/facettes-dentaires/",
+    "scrapedAt": "2025-11-05T14:20:48.299Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://visi-ad.net/\nCall log:\n\u001b[2m  - navigating to \"http://visi-ad.net/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 89
+  },
+  {
+    "url": "http://www.paris-tourisme.net/reserver-en-ligne-des-places-pour-un-spectacle-crazy-horse-paris/",
+    "landingPage": "https://www.lecrazyhorseparis.com/",
+    "scrapedAt": "2025-11-05T14:20:49.567Z",
+    "success": true,
+    "allLinksCount": 21,
+    "foundLink": {
+      "href": "https://www.lecrazyhorseparis.com/",
+      "text": "profiter d’un spectacle à Paris",
+      "outerHTML": "<a href=\"https://www.lecrazyhorseparis.com/\">profiter d’un spectacle à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 88
+  },
+  {
+    "url": "http://www.petit-paris.fr/trouver-le-lieu-ideal-pour-un-diner-spectacle-a-paris/",
+    "landingPage": "https://www.lecrazyhorseparis.com/",
+    "scrapedAt": "2025-11-05T14:20:51.595Z",
+    "success": true,
+    "allLinksCount": 20,
+    "foundLink": {
+      "href": "https://www.lecrazyhorseparis.com/",
+      "text": "www.lecrazyhorseparis.com",
+      "outerHTML": "<a href=\"https://www.lecrazyhorseparis.com/\">www.lecrazyhorseparis.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 87
+  },
+  {
+    "url": "http://www.xn--vnementiel-96ab.net/rendez-vous-incentives-glamour-reservez-des-places-au-crazy-horse-paris/",
+    "landingPage": "https://www.lecrazy.com/vos-objectifs/incentives/",
+    "scrapedAt": "2025-11-05T14:20:51.850Z",
+    "success": true,
+    "allLinksCount": 12,
+    "foundLink": {
+      "href": "https://www.lecrazy.com/vos-objectifs/incentives/",
+      "text": "www.lecrazy.com",
+      "outerHTML": "<a href=\"https://www.lecrazy.com/vos-objectifs/incentives/\">www.lecrazy.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 86
+  },
+  {
+    "url": "http://juliengauthier.fr/",
+    "landingPage": "https://www.bonjour-oscar.com/nos-agences/",
+    "scrapedAt": "2025-11-05T14:20:52.948Z",
+    "success": true,
+    "allLinksCount": 3,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 84
+  },
+  {
+    "url": "https://www.homedome.fr/",
+    "landingPage": "https://www.bonjour-oscar.com/",
+    "scrapedAt": "2025-11-05T14:20:53.885Z",
+    "success": true,
+    "allLinksCount": 326,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 83
+  },
+  {
+    "url": "http://www.festy-events.fr/comment-fideliser-et-remercier-vos-clients/",
+    "landingPage": "https://www.lecrazy.com/vos-objectifs/cadeaux-affaires/",
+    "scrapedAt": "2025-11-05T14:20:54.394Z",
+    "success": true,
+    "allLinksCount": 10,
+    "foundLink": {
+      "href": "https://www.lecrazy.com/vos-objectifs/cadeaux-affaires/",
+      "text": "voir ici",
+      "outerHTML": "<a href=\"https://www.lecrazy.com/vos-objectifs/cadeaux-affaires/\">voir ici</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 85
+  },
+  {
+    "url": "http://www.appartement.org/",
+    "landingPage": "https://www.bonjour-oscar.com/",
+    "scrapedAt": "2025-11-05T14:20:56.021Z",
+    "success": true,
+    "allLinksCount": 89,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 82
+  },
+  {
+    "url": "http://www.galerie-oeilecoute.fr/location-de-studio-photo-contacter-un-prestataire-en-ligne/",
+    "landingPage": "http://www.acielouvertstudios.com/location-studio-photo-mesure/",
+    "scrapedAt": "2025-11-05T14:20:56.783Z",
+    "success": true,
+    "allLinksCount": 21,
+    "foundLink": {
+      "href": "http://www.acielouvertstudios.com/location-studio-photo-mesure/",
+      "text": "cliquez ici",
+      "outerHTML": "<a href=\"http://www.acielouvertstudios.com/location-studio-photo-mesure/\">cliquez ici</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 81
+  },
+  {
+    "url": "http://bonheur-en-papillote.com/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:58.389Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://bonheur-en-papillote.com/\nCall log:\n\u001b[2m  - navigating to \"http://bonheur-en-papillote.com/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 70
+  },
+  {
+    "url": "http://www.mon-shooting.fr/location-de-studio-photo-a-paris/",
+    "landingPage": "http://www.acielouvertstudios.com/",
+    "scrapedAt": "2025-11-05T14:20:58.498Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "http://www.acielouvertstudios.com/",
+      "text": "location de studio photo à Paris",
+      "outerHTML": "<a href=\"http://www.acielouvertstudios.com/\">location de studio photo à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 80
+  },
+  {
+    "url": "http://www.dollywedding.fr/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:20:59.996Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://www.dollywedding.fr/\nCall log:\n\u001b[2m  - navigating to \"http://www.dollywedding.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 66
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=41775&from=singlemessage",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:21:05.817Z",
+    "success": true,
+    "allLinksCount": 224,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国药妆",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\"><u>法国药妆</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 64
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=41778&from=singlemessage",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:21:06.832Z",
+    "success": true,
+    "allLinksCount": 224,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国药妆品牌",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\"><u>法国药妆品牌</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 63
+  },
+  {
+    "url": "https://www.annuairemariage.fr/faire-le-bon-choix-pour-sa-tenue-du-jour-j-mariage/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+    "scrapedAt": "2025-11-05T14:21:07.632Z",
+    "success": true,
+    "allLinksCount": 30,
+    "foundLink": {
+      "href": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+      "text": "costume de mariage sur mesure",
+      "outerHTML": "<a href=\"https://tailortrucks.com/costume-sur-mesure-mariage/\">costume de mariage sur mesure</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 60
+  },
+  {
+    "url": "https://www.getaria.net/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-05T14:21:07.644Z",
+    "success": true,
+    "allLinksCount": 74,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 61
+  },
+  {
+    "url": "http://www.lookdir.net/faire-confiance-a-tailor-trucks-pour-la-confection-de-votre-costume-de-mariage/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+    "scrapedAt": "2025-11-05T14:21:08.485Z",
+    "success": true,
+    "allLinksCount": 3,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 59
+  },
+  {
+    "url": "http://www.robes-de-mariage.info/",
+    "landingPage": "http://www.empiredumariage.com/",
+    "scrapedAt": "2025-11-05T14:21:09.253Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://www.robes-de-mariage.info/\nCall log:\n\u001b[2m  - navigating to \"http://www.robes-de-mariage.info/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 58
+  },
+  {
+    "url": "http://phi-sa.fr/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-business",
+    "scrapedAt": "2025-11-05T14:21:10.103Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://phi-sa.fr/\nCall log:\n\u001b[2m  - navigating to \"http://phi-sa.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 57
+  },
+  {
+    "url": "http://www.e-modestoreparis.fr/costume-de-mariage-sur-mesure-a-paris-avec-tailor-trucks/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+    "scrapedAt": "2025-11-05T14:21:10.260Z",
+    "success": true,
+    "allLinksCount": 169,
+    "foundLink": {
+      "href": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+      "text": "costume de mariage sur mesure",
+      "outerHTML": "<a href=\"https://tailortrucks.com/costume-sur-mesure-mariage/\">costume de mariage sur mesure</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 56
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=41554",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:21:16.082Z",
+    "success": true,
+    "allLinksCount": 224,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\">法国</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 54
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=41622",
+    "landingPage": "http://www.groupe-monge.cn/",
+    "scrapedAt": "2025-11-05T14:21:16.427Z",
+    "success": true,
+    "allLinksCount": 225,
+    "foundLink": {
+      "href": "http://www.groupe-monge.cn/",
+      "text": "法国药妆品牌",
+      "outerHTML": "<a href=\"http://www.groupe-monge.cn/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\">法国药妆品牌</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 55
+  },
+  {
+    "url": "https://www.feuerwear.fr/costume-sur-mesure-paris/",
+    "landingPage": "https://tailortrucks.com/",
+    "scrapedAt": "2025-11-05T14:21:17.241Z",
+    "success": true,
+    "allLinksCount": 36,
+    "foundLink": {
+      "href": "https://tailortrucks.com/",
+      "text": "costume sur mesure à Paris",
+      "outerHTML": "<a href=\"https://tailortrucks.com/\">costume sur mesure à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 49
+  },
+  {
+    "url": "http://paris-appartement.org",
+    "landingPage": "https://www.bonjour-oscar.com/",
+    "scrapedAt": "2025-11-05T14:21:18.288Z",
+    "success": true,
+    "allLinksCount": 0,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 48
+  },
+  {
+    "url": "http://musique-internet.fr/",
+    "landingPage": "https://planetsono.com/853-location",
+    "scrapedAt": "2025-11-05T14:21:19.904Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://musique-internet.fr/\nCall log:\n\u001b[2m  - navigating to \"http://musique-internet.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 45
+  },
+  {
+    "url": "http://tourisme-dentaire.net",
+    "landingPage": "https://davidguenassia.com/facettes-dentaires/",
+    "scrapedAt": "2025-11-05T14:21:21.503Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://tourisme-dentaire.net/\nCall log:\n\u001b[2m  - navigating to \"http://tourisme-dentaire.net/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 44
+  },
+  {
+    "url": "http://www.haitaolab.com/?p=41021",
+    "landingPage": "http://guoji-pai.com/",
+    "scrapedAt": "2025-11-05T14:21:21.774Z",
+    "success": true,
+    "allLinksCount": 229,
+    "foundLink": {
+      "href": "http://guoji-pai.com/",
+      "text": "国际转运",
+      "outerHTML": "<a href=\"http://guoji-pai.com/\" data-wpel-link=\"external\" target=\"_blank\" rel=\"nofollow external noopener noreferrer\"><u>国际转运</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "nofollow external noopener noreferrer",
+      "link_type": "nofollow external noopener noreferrer"
+    },
+    "netlinkId": 53
+  },
+  {
+    "url": "http://www.elektrik-sheep.com/",
+    "landingPage": "https://certideal.com/iphone-reconditionnes-82",
+    "scrapedAt": "2025-11-05T14:21:22.765Z",
+    "success": true,
+    "allLinksCount": 64,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 42
+  },
+  {
+    "url": "http://yves-simony.net/",
+    "landingPage": "https://planetsono.com/856-console-de-mixage",
+    "scrapedAt": "2025-11-05T14:21:24.368Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://yves-simony.net/\nCall log:\n\u001b[2m  - navigating to \"http://yves-simony.net/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 40
+  },
+  {
+    "url": "https://alovps.com/quand-savoir-faire-rencontre-ingeniosite-le-concept-tailor-trucks/",
+    "landingPage": "https://tailortrucks.com/",
+    "scrapedAt": "2025-11-05T14:21:24.931Z",
+    "success": true,
+    "allLinksCount": 491,
+    "foundLink": {
+      "href": "https://tailortrucks.com/",
+      "text": "costume sur mesure à Paris",
+      "outerHTML": "<a href=\"https://tailortrucks.com\">costume sur mesure à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 41
+  },
+  {
+    "url": "https://www.adsmq.org/",
+    "landingPage": "https://davidguenassia.com/facettes-dentaires",
+    "scrapedAt": "2025-11-05T14:21:26.113Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://davidguenassia.com/facettes-dentaires/",
+      "text": "Facettes dentaires à Paris 17 ème",
+      "outerHTML": "<a href=\"https://davidguenassia.com/facettes-dentaires/\">Facettes dentaires à Paris 17 ème</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 37
+  },
+  {
+    "url": "http://www.fluiid.ch/",
+    "landingPage": "https://planetsono.com/853-location",
+    "scrapedAt": "2025-11-05T14:21:26.282Z",
+    "success": true,
+    "allLinksCount": 184,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 39
+  },
+  {
+    "url": "https://inizioristorante.fr/",
+    "landingPage": "https://davidguenassia.com/facettes-dentaires/",
+    "scrapedAt": "2025-11-05T14:21:30.238Z",
+    "success": true,
+    "allLinksCount": 79,
+    "foundLink": {
+      "href": "https://davidguenassia.com/facettes-dentaires/",
+      "text": "Facettes dentaires Paris 17",
+      "outerHTML": "<a href=\"https://davidguenassia.com/facettes-dentaires/\">Facettes dentaires Paris 17</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 31
+  },
+  {
+    "url": "https://jeu35ansfly.fr/",
+    "landingPage": "https://davidguenassia.com/facettes-dentaires/",
+    "scrapedAt": "2025-11-05T14:21:31.863Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://jeu35ansfly.fr/\nCall log:\n\u001b[2m  - navigating to \"https://jeu35ansfly.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 30
+  },
+  {
+    "url": "http://blanchimentdesdents365.fr",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:33.459Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://blanchimentdesdents365.fr/\nCall log:\n\u001b[2m  - navigating to \"http://blanchimentdesdents365.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 28
+  },
+  {
+    "url": "http://urgence-dentaire-paris.com",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:34.282Z",
+    "success": true,
+    "allLinksCount": 4,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 27
+  },
+  {
+    "url": "http://dentisterieholistique.fr",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:35.875Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://dentisterieholistique.fr/\nCall log:\n\u001b[2m  - navigating to \"http://dentisterieholistique.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 26
+  },
+  {
+    "url": "http://urgencedentaire-paris.net",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:37.533Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://urgencedentaire-paris.net/\nCall log:\n\u001b[2m  - navigating to \"http://urgencedentaire-paris.net/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 25
+  },
+  {
+    "url": "http://lafeedesdents.fr",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:38.465Z",
+    "success": true,
+    "allLinksCount": 5,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 24
+  },
+  {
+    "url": "http://dentiste-paris-revah.fr",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:40.074Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://dentiste-paris-revah.fr/\nCall log:\n\u001b[2m  - navigating to \"http://dentiste-paris-revah.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 23
+  },
+  {
+    "url": "http://dentsblanchiment.fr",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:41.692Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://dentsblanchiment.fr/\nCall log:\n\u001b[2m  - navigating to \"http://dentsblanchiment.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 22
+  },
+  {
+    "url": "http://annonce-immobilier-paris.com",
+    "landingPage": "https://www.bonjour-oscar.com/",
+    "scrapedAt": "2025-11-05T14:21:43.293Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://annonce-immobilier-paris.com/\nCall log:\n\u001b[2m  - navigating to \"http://annonce-immobilier-paris.com/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 21
+  },
+  {
+    "url": "https://biomed21a.fr/",
+    "landingPage": "https://davidguenassia.com/facettes-dentaires/",
+    "scrapedAt": "2025-11-05T14:21:44.040Z",
+    "success": false,
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body') to be visible\u001b[22m\n\u001b[2m    15 × locator resolved to hidden <body id=\"custom\" data-rsssl=\"1\" data-burst_id=\"0\" data-burst_type=\"front-page\" class=\"home blog custom-background wp-theme-mesocolumn chrome\">…</body>\u001b[22m\n",
+    "netlinkId": 32
+  },
+  {
+    "url": "https://www.krawla.be/",
+    "landingPage": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+    "scrapedAt": "2025-11-05T14:21:44.906Z",
+    "success": true,
+    "allLinksCount": 83,
+    "foundLink": {
+      "href": "https://tailortrucks.com/costume-sur-mesure-mariage/",
+      "text": "Le costume sur mesure idéal pour votre mariage",
+      "outerHTML": "<a href=\"https://tailortrucks.com/costume-sur-mesure-mariage/\">Le costume sur mesure idéal pour votre mariage</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 19
+  },
+  {
+    "url": "https://www.richeidee.com/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-05T14:21:45.820Z",
+    "success": true,
+    "allLinksCount": 321,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 10
+  },
+  {
+    "url": "https://www.freezeec.com/",
+    "landingPage": "https://planetsono.com/853-location",
+    "scrapedAt": "2025-11-05T14:21:46.087Z",
+    "success": true,
+    "allLinksCount": 96,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 17
+  },
+  {
+    "url": "https://www.prenezsoindevous.net/",
+    "landingPage": "https://davidguenassia.com/facettes-dentaires/",
+    "scrapedAt": "2025-11-05T14:21:46.687Z",
+    "success": true,
+    "allLinksCount": 10,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 9
+  },
+  {
+    "url": "https://www.commentbronzer.fr/",
+    "landingPage": "https://davidguenassia.com/",
+    "scrapedAt": "2025-11-05T14:21:47.445Z",
+    "success": true,
+    "allLinksCount": 80,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 7
+  },
+  {
+    "url": "http://marketing-action.fr/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:21:48.278Z",
+    "success": false,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at http://marketing-action.fr/\nCall log:\n\u001b[2m  - navigating to \"http://marketing-action.fr/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "netlinkId": 5
+  },
+  {
+    "url": "https://www.revenus-complementaires.info/",
+    "landingPage": "https://www.bonjour-oscar.com/faire-gerer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:21:49.123Z",
+    "success": true,
+    "allLinksCount": 46,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 3
+  },
+  {
+    "url": "https://www.immobilier.fm",
+    "landingPage": "https://www.bonjour-oscar.com/faire-gerer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:21:49.913Z",
+    "success": true,
+    "allLinksCount": 337,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 4
+  },
+  {
+    "url": "http://www.today-reviews.com/",
+    "landingPage": "https://www.bonjour-oscar.com/estimer-votre-bien-immobilier/",
+    "scrapedAt": "2025-11-05T14:21:51.318Z",
+    "success": true,
+    "allLinksCount": 65,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 2
+  }
+]

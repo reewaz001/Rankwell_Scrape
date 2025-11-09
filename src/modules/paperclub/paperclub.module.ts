@@ -4,8 +4,12 @@ import { ConfigModule } from '@nestjs/config';
 import { PaperClubAPIService } from './services/paperclub-api.service';
 import { DataTransformerService } from './services/data-transformer.service';
 import { PaperClubScraperService } from './services/paperclub-scraper.service';
+import { NetlinkService } from './services/netlink.service';
+import { NetlinkScraperService } from './services/netlink-scraper.service';
 import { BQSCalculatorService } from '../../scoring/bqs-calculator.service';
 import { DatabaseService } from '../../common/database.service';
+import { LightpandaService } from '../../common/lightpanda.service';
+import { DashboardHttpClient } from '../../common/dashboard-http-client.service';
 
 /**
  * Paper.club Module
@@ -16,6 +20,8 @@ import { DatabaseService } from '../../common/database.service';
  * - Scraping orchestration
  * - BQS scoring
  * - Database persistence
+ * - Browser automation
+ * - Dashboard API integration
  */
 @Module({
   imports: [HttpModule, ConfigModule],
@@ -23,14 +29,22 @@ import { DatabaseService } from '../../common/database.service';
     PaperClubAPIService,
     DataTransformerService,
     PaperClubScraperService,
+    NetlinkService,
+    NetlinkScraperService,
     BQSCalculatorService,
     DatabaseService,
+    LightpandaService,
+    DashboardHttpClient,
   ],
   exports: [
     PaperClubScraperService,
     PaperClubAPIService,
     DataTransformerService,
+    NetlinkService,
+    NetlinkScraperService,
     DatabaseService,
+    LightpandaService,
+    DashboardHttpClient,
   ],
 })
 export class PaperClubModule {}

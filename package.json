@@ -16,9 +16,17 @@
     "test": "jest",
     "scrape": "ts-node src/cli/scrape-paperclub.ts",
     "test:auth": "ts-node src/cli/test-auth.ts",
-    "test:category": "ts-node src/cli/test-single-category.ts"
+    "test:category": "ts-node src/cli/test-single-category.ts",
+    "test:lightpanda": "ts-node src/cli/test-lightpanda.ts",
+    "test:dashboard": "ts-node src/cli/test-dashboard-client.ts",
+    "test:netlink": "ts-node src/cli/test-netlink.ts",
+    "test:netlink-scraper": "ts-node src/cli/test-netlink-scraper.ts",
+    "test:netlink-scraper-rest": "ts-node src/cli/test-netlink-scraper-rest.ts",
+    "test:netlink-scraper:mock": "ts-node src/cli/test-netlink-scraper-mock.ts",
+    "example:lightpanda": "ts-node src/examples/lightpanda-example.ts"
   },
   "dependencies": {
+    "@lightpanda/browser": "^1.0.1",
     "@nestjs/axios": "^3.0.1",
     "@nestjs/common": "^10.3.0",
     "@nestjs/config": "^3.1.1",
@@ -28,6 +36,8 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^16.3.1",
+    "playwright": "^1.56.1",
+    "playwright-core": "^1.56.1",
     "reflect-metadata": "^0.1.14",
     "rxjs": "^7.8.1"
   },

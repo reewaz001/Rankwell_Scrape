@@ -1,0 +1,1855 @@
+[
+  {
+    "url": "https://www.monblogimmo.net/immobilier-de-luxe-parisien-le-grand-retour-des-investisseurs-etrangers-post-jo-2024/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:53:59.565Z",
+    "success": true,
+    "allLinksCount": 77,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 10038
+  },
+  {
+    "url": "https://www.legavox.fr/blog/actualites/estimation-immobiliere-paris-face-nouveaux-37662.htm",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:53:59.855Z",
+    "success": true,
+    "allLinksCount": 38,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "estimer son appartement avec District Immobilier",
+      "outerHTML": "<a rel=\"ugc noreferrer noopener\" href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\">estimer son appartement avec District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "ugc noreferrer noopener",
+      "link_type": "ugc noreferrer noopener"
+    },
+    "netlinkId": 10022
+  },
+  {
+    "url": "https://www.equinoxmagazine.fr/2025/09/09/la-reprise-de-limmobilier-de-prestige-a-paris-fin-de-la-correction-des-prix-en-2025/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:00.575Z",
+    "success": true,
+    "allLinksCount": 137,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" target=\"_blank\" rel=\"dofollow noopener\"> District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "dofollow noopener",
+      "link_type": "dofollow noopener"
+    },
+    "netlinkId": 10017
+  },
+  {
+    "url": "https://www.netpublic.fr/blog/investisseurs-internationaux-et-marche-parisien-pourquoi-les-americains-investissent-17-de-plus-en-2025/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:00.708Z",
+    "success": true,
+    "allLinksCount": 96,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "réseau d’agences District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">réseau d’agences District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 10114
+  },
+  {
+    "url": "https://maisonetfinance.fr/energie-domestique-consommation/reforme-dpe-2026-850-000-logements-francais-reclasses-sans-travaux/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:01.055Z",
+    "success": true,
+    "allLinksCount": 88,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "estimer son appartement avec District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">estimer son appartement avec District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9984
+  },
+  {
+    "url": "https://www.guadeloupe.fr/patrimoine/domaines-habitations/limmobilier-guadeloupeen-attire-les-capitaux-parisiens-vers-une-nouvelle-geographie-patrimoniale/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:01.813Z",
+    "success": true,
+    "allLinksCount": 191,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "faire évaluer mon appartement à Paris par District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" rel=\"dofollow\">&nbsp;faire évaluer mon appartement à Paris par District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "dofollow",
+      "link_type": "dofollow"
+    },
+    "netlinkId": 9926
+  },
+  {
+    "url": "https://www.fivestars-thailand.com/fr/blog/271-la-vente-immobiliere-parisienne-au-service-de-lexpatriation-vers-la-thailande-une-tendance-en-forte-progression",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:01.998Z",
+    "success": true,
+    "allLinksCount": 59,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\"> </a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9921
+  },
+  {
+    "url": "https://www.cafe-pouchkine.fr/pourquoi-paris-reste-une-valeur-sure-pour-un-placement-immobilier/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:02.380Z",
+    "success": true,
+    "allLinksCount": 80,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "agences immobilières District Immobilier à Paris",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">agences immobilières District Immobilier à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9915
+  },
+  {
+    "url": "https://www.amalgame.fr/marche-immobilier-parisien-vers-la-fin-de-la-correction-des-prix/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:02.853Z",
+    "success": true,
+    "allLinksCount": 3,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 9778
+  },
+  {
+    "url": "https://www.cotelittoral.fr/parisiens-en-quete-de-bord-de-mer-l-estimation-immobiliere-au-cour-du-projet-de-vie-622220.html",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:03.414Z",
+    "success": true,
+    "allLinksCount": 156,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" rel=\"dofollow\"> District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "dofollow",
+      "link_type": "dofollow"
+    },
+    "netlinkId": 9775
+  },
+  {
+    "url": "https://leconomieetmoi.fr/immobilier/reglementation-dpe-2025-limpact-sur-levaluation-immobiliere-parisienne-10858",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:05.491Z",
+    "success": true,
+    "allLinksCount": 46,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "Service-Public.fr",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\" rel=\"dofollow noopener\">Service-Public.fr</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "dofollow noopener",
+      "link_type": "dofollow noopener"
+    },
+    "netlinkId": 9774
+  },
+  {
+    "url": "https://habitat.immo/achat-immobilier-centre-ville-peripherie/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:05.792Z",
+    "success": true,
+    "allLinksCount": 66,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\" rel=\"noopener\">District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 9664
+  },
+  {
+    "url": "https://carnet.leparisien.fr/actualites/avenir/quitter-paris-pour-sinstaller-en-banlieue-comment-faire-pour-estimer-votre-appartement-parisien-en-vue-de-sa-vente-7322/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:05.905Z",
+    "success": true,
+    "allLinksCount": 67,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\" rel=\"noreferrer noopener\">District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer noopener",
+      "link_type": "noreferrer noopener"
+    },
+    "netlinkId": 9661
+  },
+  {
+    "url": "https://www.actual-immo.fr/prix-immobilier-paris-2025/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:06.425Z",
+    "success": true,
+    "allLinksCount": 163,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\" rel=\"noreferrer noopener\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer noopener",
+      "link_type": "noreferrer noopener"
+    },
+    "netlinkId": 9647
+  },
+  {
+    "url": "https://leblogimmobilier.org/2025/03/19/quelle-est-lestimation-de-la-valeur-dun-bien-immobilier-a-paris/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:07.230Z",
+    "success": true,
+    "allLinksCount": 83,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\" rel=\"noreferrer noopener\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer noopener",
+      "link_type": "noreferrer noopener"
+    },
+    "netlinkId": 9401
+  },
+  {
+    "url": "https://cerclemediateursbancaires.fr/estimation-immobiliere-a-paris-les-cles-pour-bien-evaluer-votre-appartement/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:08.306Z",
+    "success": true,
+    "allLinksCount": 22,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\" rel=\"noopener noreferrer\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener noreferrer",
+      "link_type": "noopener noreferrer"
+    },
+    "netlinkId": 9384
+  },
+  {
+    "url": "https://blog-investissement-immobilier.lybox.fr/investir-dans-limmobilier-de-luxe-est-ce-reellement-une-bonne-idee/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:09.330Z",
+    "success": true,
+    "allLinksCount": 79,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9337
+  },
+  {
+    "url": "https://www.ma-propriete.fr/fr/blog/lestimation-immobiliere-a-paris-un-art-complexe-pour-valoriser-votre-bien",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:09.771Z",
+    "success": true,
+    "allLinksCount": 218,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" rel=\"noopener noreferrer\" target=\"_blank\"><u>district-immo.com</u></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener noreferrer",
+      "link_type": "noopener noreferrer"
+    },
+    "netlinkId": 9365
+  },
+  {
+    "url": "https://immocitiz.fr/estimation-immobiliere/comment-faire-estimer-un-bien-de-prestige/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:10.000Z",
+    "success": true,
+    "allLinksCount": 48,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9355
+  },
+  {
+    "url": "https://www.la-loipinel.fr/secrets-marche-immobilier-parisien/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:11.892Z",
+    "success": true,
+    "allLinksCount": 36,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" target=\"_blank\" rel=\"noopener\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 9319
+  },
+  {
+    "url": "https://www.monde-immobilier.com/district-immobilier-un-partenaire-de-confiance-pour-investir-dans-limmobilier/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:12.897Z",
+    "success": true,
+    "allLinksCount": 170,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9241
+  },
+  {
+    "url": "https://www.droitconstitutionnel.org/acheter-vendre-bien-avec-district-immobilier/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:13.086Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9266
+  },
+  {
+    "url": "https://cfec-experts.fr/quand-faire-appel-a-une-agence-immobiliere/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:14.607Z",
+    "success": true,
+    "allLinksCount": 78,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">District Immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener noreferrer",
+      "link_type": "noopener noreferrer"
+    },
+    "netlinkId": 9217
+  },
+  {
+    "url": "https://needl.fr/comment-faire-estimer-son-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:15.289Z",
+    "success": true,
+    "allLinksCount": 36,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" rel=\"noreferrer noopener\" target=\"_blank\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer noopener",
+      "link_type": "noreferrer noopener"
+    },
+    "netlinkId": 9298
+  },
+  {
+    "url": "https://www.allodiagnostic.com/actus/passer-par-une-agence-immobiliere-pour-lestimation-dun-bien-de-luxe-sur-paris/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:15.569Z",
+    "success": true,
+    "allLinksCount": 59,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\" rel=\"dofollow\" target=\"_blank\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "dofollow",
+      "link_type": "dofollow"
+    },
+    "netlinkId": 9143
+  },
+  {
+    "url": "https://presseagence.fr/paris-quel-est-le-salaire-moyen-dun-agent-immobilier-de-luxe/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:15.671Z",
+    "success": true,
+    "allLinksCount": 69,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District Immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\"><span style=\"font-weight: 400;\">District Immobilier</span></a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9185
+  },
+  {
+    "url": "https://www.zimo.fr/blog/immobilier/article/comment-realiser-une-estimation-immobiliere-a-paris",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:16.200Z",
+    "success": true,
+    "allLinksCount": 1,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 9099
+  },
+  {
+    "url": "https://www.calculer.com/actus/estimer-la-valeur-de-son-bien-immobilier-pour-la-declaration-dimpots/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-17/",
+    "scrapedAt": "2025-11-12T10:54:17.431Z",
+    "success": true,
+    "allLinksCount": 43,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-17/",
+      "text": "estimation immobilière à Paris 17",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-17/\" target=\"_blank\" rel=\"noopener noreferrer\">estimation immobilière à Paris 17</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener noreferrer",
+      "link_type": "noopener noreferrer"
+    },
+    "netlinkId": 9007
+  },
+  {
+    "url": "https://www.ideal-investisseur.fr/voix/limportance-dune-bonne-evaluation-immobiliere-et-des-diagnostics-avant-de-vendre-30415.html",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-15/",
+    "scrapedAt": "2025-11-12T10:54:18.247Z",
+    "success": true,
+    "allLinksCount": 56,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-15/",
+      "text": "estimation d'appartement à Paris 15",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-15/\"><strong>estimation d'appartement à Paris 15</strong></a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 9066
+  },
+  {
+    "url": "https://immocompare.org/estimation-immobilier-paris-15/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-15/",
+    "scrapedAt": "2025-11-12T10:54:18.279Z",
+    "success": true,
+    "allLinksCount": 343,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-15/",
+      "text": "estimation d’appartement à Paris 15",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-15/\">estimation d’appartement à Paris 15</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 8986
+  },
+  {
+    "url": "https://www.economiematin.fr/quelle-strategie-transaction-immobiliere-reussie",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-17/",
+    "scrapedAt": "2025-11-12T10:54:19.366Z",
+    "success": true,
+    "allLinksCount": 106,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-17/",
+      "text": "estimation immobilière à Paris 17",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-17/\" target=\"_blank\" rel=\"noopener\" data-wpel-link=\"external\">estimation immobilière à Paris 17</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 8949
+  },
+  {
+    "url": "https://www.logetoi.fr/les-cles-pour-reussir-lestimation-de-votre-bien-immobilier-a-paris-15/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-15/",
+    "scrapedAt": "2025-11-12T10:54:19.992Z",
+    "success": true,
+    "allLinksCount": 152,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-15/",
+      "text": "estimation d’appartement à Paris 15",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-15/\">estimation d’appartement à Paris 15</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 8968
+  },
+  {
+    "url": "https://www.lqe.fr/5-conseils-pour-une-estimation-immobiliere-reussie/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-17/",
+    "scrapedAt": "2025-11-12T10:54:20.036Z",
+    "success": true,
+    "allLinksCount": 62,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-17/",
+      "text": "estimation immobilière à Paris 17",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-17/\" rel=\"noreferrer noopener\" target=\"_blank\">estimation immobilière à Paris 17</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer noopener",
+      "link_type": "noreferrer noopener"
+    },
+    "netlinkId": 9044
+  },
+  {
+    "url": "https://itsluxetime.paris/le-marche-de-limmobilier-a-paris-tendances-et-perspectives/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:21.254Z",
+    "success": true,
+    "allLinksCount": 202,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "agence immobilière de luxe à Paris",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" rel=\"noreferrer noopener\" target=\"_blank\">agence immobilière de luxe à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer noopener",
+      "link_type": "noreferrer noopener"
+    },
+    "netlinkId": 8896
+  },
+  {
+    "url": "https://www.paris-friendly.fr/immobilier-luxe-haut-de-gamme.html",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:21.423Z",
+    "success": true,
+    "allLinksCount": 265,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "agence immobilière de prestige à Paris",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">agence immobilière de prestige à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 8850
+  },
+  {
+    "url": "https://www.tendance-travaux.fr/immobilier/bailleur-agence-ou-proprietaire/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:21.594Z",
+    "success": true,
+    "allLinksCount": 83,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 8915
+  },
+  {
+    "url": "https://www.mediaseine.fr/immobilier/interet-investir-immobilier-2024/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:22.645Z",
+    "success": true,
+    "allLinksCount": 95,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "agence immobilière de prestige à Paris",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">agence immobilière de prestige à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 8731
+  },
+  {
+    "url": "https://www.immobilier-france.fr/actu/immobilier-neuf-ou-ancien/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:22.688Z",
+    "success": true,
+    "allLinksCount": 38,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "https://www.district-immo.com/",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" target=\"_blank\" rel=\"noopener\">https://www.district-immo.com/</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 8828
+  },
+  {
+    "url": "https://www.bien-dans-ma-ville.fr/blog/immobilier-de-luxe-a-paris-les-tendances-2024.html",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:22.732Z",
+    "success": true,
+    "allLinksCount": 44,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 8707
+  },
+  {
+    "url": "https://casa-infos.fr/comment-trouver-la-bonne-agence-immobiliere-a-paris-6/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:23.895Z",
+    "success": true,
+    "allLinksCount": 119,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" target=\"_blank\" rel=\"noopener\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 8230
+  },
+  {
+    "url": "https://www.jowi.fr/achat-revente-immobilier/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:23.980Z",
+    "success": true,
+    "allLinksCount": 30,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "agence immobilière de prestige à Paris",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" rel=\"noreferrer\">agence immobilière de prestige à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer",
+      "link_type": "noreferrer"
+    },
+    "netlinkId": 8703
+  },
+  {
+    "url": "https://www.associationeconomienumerique.fr/investir-immobilier-luxe/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:24.010Z",
+    "success": true,
+    "allLinksCount": 46,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" target=\"_blank\" rel=\"noopener\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 8244
+  },
+  {
+    "url": "https://www.emprunter-malin.com/pourquoi-choisir-une-agence-immobiliere-plutot-quune-autre/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:24.887Z",
+    "success": true,
+    "allLinksCount": 344,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" target=\"_blank\" rel=\"noopener noreferrer\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener noreferrer",
+      "link_type": "noopener noreferrer"
+    },
+    "netlinkId": 8184
+  },
+  {
+    "url": "https://www.tout-paris.org/investir-paris-rive-gauche/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:24.919Z",
+    "success": true,
+    "allLinksCount": 80,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 7798
+  },
+  {
+    "url": "http://www.fgme.fr/agence-immobiliere-de-prestige-pour-vendre-bien-exception-paris/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:25.000Z",
+    "success": true,
+    "allLinksCount": 46,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 8166
+  },
+  {
+    "url": "https://www.patricia4realestate.com/agence-immobiliere-paris-8/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:25.781Z",
+    "success": true,
+    "allLinksCount": 30,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 7751
+  },
+  {
+    "url": "https://www.nouveau-paris-idf.com/choisir-agence-immo-paris-6/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:26.020Z",
+    "success": true,
+    "allLinksCount": 146,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" target=\"_blank\" rel=\"noopener\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 7779
+  },
+  {
+    "url": "https://www.chrono-immobilier.fr/pourquoi-passer-par-une-agence-immobiliere-pour-lachat-dun-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:26.983Z",
+    "success": true,
+    "allLinksCount": 159,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 7727
+  },
+  {
+    "url": "https://www.amalgame.fr/agence-immobiliere-specialisee-locations/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:27.164Z",
+    "success": true,
+    "allLinksCount": 3,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 7613
+  },
+  {
+    "url": "https://voila-le-travail.fr/quartiers-achat-immobilier-a-paris/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:28.390Z",
+    "success": true,
+    "allLinksCount": 66,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" target=\"_blank\" rel=\"noopener\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 7501
+  },
+  {
+    "url": "https://plandeparis.info/actualites/2022/11/28/nos-conseils-pour-lachat-dun-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:28.399Z",
+    "success": true,
+    "allLinksCount": 20,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" rel=\"noreferrer noopener\" target=\"_blank\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noreferrer noopener",
+      "link_type": "noreferrer noopener"
+    },
+    "netlinkId": 7593
+  },
+  {
+    "url": "https://www.immofeed.fr/comment-trouver-agence-immobiliere-paris-8eme/",
+    "landingPage": "https://www.district-immo.com/agences/george-v/",
+    "scrapedAt": "2025-11-12T10:54:28.680Z",
+    "success": true,
+    "allLinksCount": 58,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 7743
+  },
+  {
+    "url": "https://www.valeurscorporate.fr/investir-immobilier-paris/",
+    "landingPage": "https://www.district-immo.com/agences/george-v/",
+    "scrapedAt": "2025-11-12T10:54:29.468Z",
+    "success": true,
+    "allLinksCount": 3,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 7400
+  },
+  {
+    "url": "https://ilbi.org/marche-immobilier-a-paris-6eme/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:29.474Z",
+    "success": true,
+    "allLinksCount": 3,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 7484
+  },
+  {
+    "url": "https://www.usineadesign.com/les-raisons-de-faire-appel-a-une-agence-immobiliere-paris-8/",
+    "landingPage": "https://www.district-immo.com/agences/george-v/",
+    "scrapedAt": "2025-11-12T10:54:29.519Z",
+    "success": true,
+    "allLinksCount": 19,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 7383
+  },
+  {
+    "url": "https://www.immoz.info/quels-sont-les-criteres-indispensables-pour-choisir-une-agence-immobiliere-de-luxe-a-paris/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:30.376Z",
+    "success": true,
+    "allLinksCount": 737,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener noreferrer",
+      "link_type": "noopener noreferrer"
+    },
+    "netlinkId": 7294
+  },
+  {
+    "url": "https://www.france-initiative.fr/actualites/immobilier-comment-se-porte-le-marche-immobilier-sur-lile-saint-louis/",
+    "landingPage": "https://www.district-immo.com/agences/ile-saint-louis/",
+    "scrapedAt": "2025-11-12T10:54:30.398Z",
+    "success": true,
+    "allLinksCount": 33,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/ile-saint-louis/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/ile-saint-louis/\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 7355
+  },
+  {
+    "url": "https://www.afub.org/acheter-un-appartement-dans-paris-8/",
+    "landingPage": "http://www.district-immo.com/agences/george-v/",
+    "scrapedAt": "2025-11-12T10:54:31.314Z",
+    "success": true,
+    "allLinksCount": 56,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 7194
+  },
+  {
+    "url": "https://www.revue-fonciere.com/detecter-lagence-immobiliere-de-prestige-a-paris-pour-la-recherche-de-votre-bien/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:31.833Z",
+    "success": true,
+    "allLinksCount": 122,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 7315
+  },
+  {
+    "url": "https://reseaux-professionnels.com/immobilier/pourquoi-investir-dans-limmobilier-de-prestige/",
+    "landingPage": "http://district-immo.com",
+    "scrapedAt": "2025-11-12T10:54:32.127Z",
+    "success": true,
+    "allLinksCount": 80,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\" target=\"_blank\" rel=\"noreferrer\" noopener=\"\">District-immo.com</a>",
+      "matched": true,
+      "matchType": "domain",
+      "rel": "noreferrer",
+      "link_type": "noreferrer"
+    },
+    "netlinkId": 7140
+  },
+  {
+    "url": "https://www.droitimmobilier.info/votre-partenaire-immobilier-a-paris-8eme/",
+    "landingPage": "http://district-immo.com",
+    "scrapedAt": "2025-11-12T10:54:32.417Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "District-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\" target=\"_blank\" rel=\" \">District-immo.com</a>",
+      "matched": true,
+      "matchType": "domain",
+      "rel": " ",
+      "link_type": ""
+    },
+    "netlinkId": 7214
+  },
+  {
+    "url": "https://www.trouver-un-logement-neuf.com/immobilier-infos/trouver-agence-immobiliere-luxe-paris-9220.html",
+    "landingPage": "https://www.district-immo.com",
+    "scrapedAt": "2025-11-12T10:54:32.734Z",
+    "success": true,
+    "allLinksCount": 47,
+    "foundLink": {
+      "href": "https://www.district-immo.com/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/\" target=\"_blank\" rel=\"noopener\"><strong>district-immo.com</strong></a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": "noopener",
+      "link_type": "noopener"
+    },
+    "netlinkId": 6936
+  },
+  {
+    "url": "https://coach-immobilier-particuliers.fr/district-saint-germain-pourquoi-choisir-cette-agence-immobiliere/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:33.050Z",
+    "success": true,
+    "allLinksCount": 40,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "agence immobilière paris 6",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\">agence immobilière paris 6</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 6672
+  },
+  {
+    "url": "https://www.aidologement.com/faire-estimer-son-bien-par-un-professionnel-de-limmobilier/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:33.224Z",
+    "success": true,
+    "allLinksCount": 41,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "agence immobilière paris 7",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\">agence immobilière paris 7</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 6653
+  },
+  {
+    "url": "https://www.monconseillerimmo.com/comment-reussir-son-investissement-immobilier-a-paris/",
+    "landingPage": "http://www.district-immo.com/agences/george-v/",
+    "scrapedAt": "2025-11-12T10:54:33.812Z",
+    "success": true,
+    "allLinksCount": 71,
+    "foundLink": {
+      "href": "http://www.district-immo.com/agences/george-v/",
+      "text": "agence immobilière paris 8",
+      "outerHTML": "<a href=\"http://www.district-immo.com/agences/george-v/\">agence immobilière paris 8</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5977
+  },
+  {
+    "url": "https://www.didiermathus.com/faites-evaluer-votre-bien-immobilier-parisien-pour-une-meilleure-vente/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:34.048Z",
+    "success": true,
+    "allLinksCount": 79,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "agence immobilière paris 7",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\">agence immobilière paris 7</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5922
+  },
+  {
+    "url": "http://www.repp.org/faire-estimer-son-bien-immobilier-par-un-professionnel/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:34.149Z",
+    "success": true,
+    "allLinksCount": 32,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "agence immobilière Paris 7",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\">agence immobilière Paris 7</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 6539
+  },
+  {
+    "url": "https://www.paris-immobilier.net/trouver-une-agence-immobiliere-de-confiance-a-paris-7/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:36.022Z",
+    "success": true,
+    "allLinksCount": 21,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "Consultez ce site",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\">Consultez ce site</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5703
+  },
+  {
+    "url": "https://www.lebienimmobilier.com/agence-immobiliere-a-paris-7-champ-de-mars/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:54:36.122Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\" target=\"_blank\" rel=\"\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5702
+  },
+  {
+    "url": "https://www.lactualaloupe.fr/trouver-une-agence-immobiliere-a-paris-8/",
+    "landingPage": "https://www.district-immo.com/agences/george-v/",
+    "scrapedAt": "2025-11-12T10:54:36.229Z",
+    "success": true,
+    "allLinksCount": 29,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "agence immobilière à Paris 8",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\">agence immobilière à Paris 8</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5701
+  },
+  {
+    "url": "https://www.immobilier-a-paris.net/faire-appel-aux-services-d-une-agence-immobiliere-a-paris-7/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:38.048Z",
+    "success": true,
+    "allLinksCount": 24,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5700
+  },
+  {
+    "url": "https://www.diz-immo.com/faire-une-estimation-d-un-bien-immobilier-a-paris-en-ligne/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:38.210Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5699
+  },
+  {
+    "url": "http://www.desirimmo.com/choisir-une-agence-immobiliere-de-prestige-a-paris-8eme-arrondissement/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:38.284Z",
+    "success": true,
+    "allLinksCount": 22,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "agence immobilière à Paris 8",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\">agence immobilière à Paris 8</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5697
+  },
+  {
+    "url": "https://www.zoomout.fr/se-tourner-vers-les-services-d-une-agence-immobiliere-de-confiance-a-paris-8/",
+    "landingPage": "https://www.district-immo.com/agences/george-v/",
+    "scrapedAt": "2025-11-12T10:54:40.176Z",
+    "success": true,
+    "allLinksCount": 14,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "agence immobilière paris 8",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\">agence immobilière paris 8</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5361
+  },
+  {
+    "url": "https://www.vendre-louer-appartement.fr/estimer-un-appartement-a-paris-16/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+    "scrapedAt": "2025-11-12T10:54:40.297Z",
+    "success": true,
+    "allLinksCount": 14,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "estimation de bien immobilier à Paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\">estimation de bien immobilier à Paris 16</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5360
+  },
+  {
+    "url": "https://www.bs-immobilier.com/estimer-un-appartement-a-paris-16/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+    "scrapedAt": "2025-11-12T10:54:40.470Z",
+    "success": true,
+    "allLinksCount": 22,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "estimation appartement paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\">estimation appartement paris 16</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5359
+  },
+  {
+    "url": "https://www.immobiliervente.fr/estimer-un-bien-immobilier-a-paris-16/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+    "scrapedAt": "2025-11-12T10:54:42.546Z",
+    "success": true,
+    "allLinksCount": 22,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "estimation bien immobilier Paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\">estimation bien immobilier Paris 16</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5357
+  },
+  {
+    "url": "https://www.immobilier-luxe-paris.com/comment-estimer-au-mieux-votre-appartement-a-paris-16/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+    "scrapedAt": "2025-11-12T10:54:42.622Z",
+    "success": true,
+    "allLinksCount": 22,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "estimation de bien immobilier à Paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\">estimation de bien immobilier à Paris 16</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5356
+  },
+  {
+    "url": "https://www.lesnewsimmo.com/trouver-une-agence-immobiliere-a-paris-6eme-arrondissement/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:54:43.392Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "consultez cette page",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\">consultez cette page</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 5358
+  },
+  {
+    "url": "https://www.ideal-investisseur.fr/voix/vendre-un-logement-a-paris-comment-estimer-son-bien-8735.html",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:43.670Z",
+    "success": true,
+    "allLinksCount": 85,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/%C2%A0%C2%BB%20%20rel=",
+      "text": "évaluation d'un bien immobilier à Paris",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/&nbsp;»  rel=\" nofollow\"=\"\">évaluation d'un bien immobilier à Paris</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 4928
+  },
+  {
+    "url": "https://www.proximite-magazine.com/trouver-une-agence-immobiliere-de-confiance-a-paris-8/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:44.687Z",
+    "success": true,
+    "allLinksCount": 27,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/george-v/",
+      "text": "lien",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/george-v/\">lien</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 4848
+  },
+  {
+    "url": "https://www.surlimmo.com/comment-evaluer-la-valeur-marchande-d-un-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+    "scrapedAt": "2025-11-12T10:54:45.789Z",
+    "success": true,
+    "allLinksCount": 20,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "estimation d’appartement à Paris 11",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\">estimation d’appartement à Paris 11</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 4493
+  },
+  {
+    "url": "https://www.liens-internet.info/faire-une-estimation-immobiliere-en-ligne-a-paris-11/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+    "scrapedAt": "2025-11-12T10:54:46.974Z",
+    "success": true,
+    "allLinksCount": 25,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 4492
+  },
+  {
+    "url": "https://www.investim-immo.fr/vente-de-bien-immobilier-faire-une-estimation-en-ligne/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:49.101Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "estimer un bien immobilier",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">estimer un bien immobilier</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 4491
+  },
+  {
+    "url": "https://www.index-immo.com/comment-estimer-le-prix-d-un-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:54:49.200Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "estimation immobilière à Paris",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">estimation immobilière à Paris</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 4490
+  },
+  {
+    "url": "https://www.topblog.org/paris-16eme-effectuer-une-estimation-immobiliere-fiable/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:51.368Z",
+    "success": true,
+    "allLinksCount": 18,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "effectuer une estimation immobilière à Paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\">effectuer une estimation immobilière à Paris 16</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3508
+  },
+  {
+    "url": "https://www.immo-de-prestige.fr/faire-une-estimation-immobiliere-a-paris-16/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+    "scrapedAt": "2025-11-12T10:54:52.183Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "estimation immobilière paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\">estimation immobilière paris 16</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 4489
+  },
+  {
+    "url": "https://www.lavoiedupeuple.fr/effectuer-une-estimation-fiable-pour-une-vente-immobiliere-a-paris-11/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:53.455Z",
+    "success": true,
+    "allLinksCount": 26,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "cette page",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\">cette page</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3507
+  },
+  {
+    "url": "https://www.facimmo.fr/comment-estimer-le-prix-d-un-bien-immobilier-a-neuilly-sur-seine/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:53.482Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/neuilly-sur-seine/",
+      "text": "estimation d’appartement à Neuilly",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/neuilly-sur-seine/\">estimation d’appartement à Neuilly</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3506
+  },
+  {
+    "url": "https://www.elmoustikoblog.net/marche-immobilier-10eme-effectuer-une-estimation-fiable/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:54.256Z",
+    "success": true,
+    "allLinksCount": 30,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-10/",
+      "text": "estimation immobilière à Paris 10",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-10/\">estimation immobilière à Paris 10</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3505
+  },
+  {
+    "url": "https://www.morgan-blog.fr/comment-obtenir-des-informations-sur-la-valeur-marchande-de-votre-logement/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:55.313Z",
+    "success": true,
+    "allLinksCount": 0,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 3273
+  },
+  {
+    "url": "https://www.canailleblog.fr/comment-estimer-un-appartement-a-paris-11/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:55.586Z",
+    "success": true,
+    "allLinksCount": 27,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "site spécialisé",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\">site spécialisé</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3503
+  },
+  {
+    "url": "https://www.cool-blog.org/comment-estimer-la-valeur-de-votre-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:55.730Z",
+    "success": true,
+    "allLinksCount": 14,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-10/",
+      "text": "estimation de bien immobilier à Paris 10",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-10/\">estimation de bien immobilier à Paris 10</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3504
+  },
+  {
+    "url": "https://www.immobilieravendre.org/vente-de-bien-immobilier-a-paris-comment-faire-une-estimation/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:57.591Z",
+    "success": true,
+    "allLinksCount": 21,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "plus d’informations",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">plus d’informations</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3272
+  },
+  {
+    "url": "https://www.estimation-bien-immobilier.info/estimer-un-appartement-a-paris-neuilly-sur-seine/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:58.045Z",
+    "success": true,
+    "allLinksCount": 21,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/neuilly-sur-seine/",
+      "text": "estimation d’appartement à Neuilly-sur-Seine",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/neuilly-sur-seine/\">estimation d’appartement à Neuilly-sur-Seine</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3270
+  },
+  {
+    "url": "https://www.estimationbienimmobilier.fr/estimer-son-bien-immobilier-en-ligne-a-paris11/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:58.052Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "estimation immobilière paris 11",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\">estimation immobilière paris 11</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3271
+  },
+  {
+    "url": "https://www.galerie-immobilier.net",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:58.829Z",
+    "success": true,
+    "allLinksCount": 74,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 2993
+  },
+  {
+    "url": "https://www.hermitage-immo.fr",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:59.337Z",
+    "success": true,
+    "allLinksCount": 20,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 2994
+  },
+  {
+    "url": "https://www.ducotedechezmaya.com",
+    "landingPage": "https://www.district-immo.com/fr/estimer-vendre-votre-bien-immobilier",
+    "scrapedAt": "2025-11-12T10:54:59.824Z",
+    "success": true,
+    "allLinksCount": 50,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 2991
+  },
+  {
+    "url": "https://www.blogonline.fr/estimer-un-bien-immobilier-a-paris-11-directement-en-ligne/",
+    "landingPage": "https://www.district-immo.com/",
+    "scrapedAt": "2025-11-12T10:54:59.931Z",
+    "success": true,
+    "allLinksCount": 14,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "estimation immobilière paris 11",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\">estimation immobilière paris 11</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 3269
+  },
+  {
+    "url": "https://info-immo.com",
+    "landingPage": "https://www.district-immo.com/fr/agence",
+    "scrapedAt": "2025-11-12T10:55:01.391Z",
+    "success": true,
+    "allLinksCount": 56,
+    "foundLink": {
+      "href": "",
+      "text": "",
+      "outerHTML": "",
+      "matched": false
+    },
+    "netlinkId": 2990
+  },
+  {
+    "url": "http://www.onblog.org/estimer-son-bien-immobilier-a-paris-10/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/",
+    "scrapedAt": "2025-11-12T10:55:02.009Z",
+    "success": true,
+    "allLinksCount": 17,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-10/",
+      "text": "estimation immobilier paris 10",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-10/\" rel=\"\" target=\"_blank\">estimation immobilier paris 10</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 2426
+  },
+  {
+    "url": "http://www.hubservatoire.fr/comment-estimer-un-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/",
+    "scrapedAt": "2025-11-12T10:55:02.098Z",
+    "success": true,
+    "allLinksCount": 26,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "estimation d’appartement à Paris 11",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\" rel=\" \" target=\"_blank\">estimation d’appartement à Paris 11</a>",
+      "matched": true,
+      "matchType": "domain",
+      "rel": " ",
+      "link_type": ""
+    },
+    "netlinkId": 2425
+  },
+  {
+    "url": "https://www.aneco.fr/faire-une-estimation-en-ligne-de-son-bien-immobilier-a-paris-11/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/",
+    "scrapedAt": "2025-11-12T10:55:03.643Z",
+    "success": true,
+    "allLinksCount": 16,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-11/",
+      "text": "en suivant ce lien",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-11/\" rel=\"\" target=\"_blank\">en suivant ce lien</a>",
+      "matched": true,
+      "matchType": "domain",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 2424
+  },
+  {
+    "url": "https://www.tijournal.fr/faire-une-estimation-immobiliere-a-paris-16/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/",
+    "scrapedAt": "2025-11-12T10:55:04.143Z",
+    "success": true,
+    "allLinksCount": 26,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "estimation bien immobilier paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\" rel=\" \" target=\"_blank\">estimation bien immobilier paris 16</a>",
+      "matched": true,
+      "matchType": "domain",
+      "rel": " ",
+      "link_type": ""
+    },
+    "netlinkId": 2422
+  },
+  {
+    "url": "https://www.actualitesfrance.fr/pourquoi-estimer-votre-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/espace-vendeur/",
+    "scrapedAt": "2025-11-12T10:55:04.186Z",
+    "success": true,
+    "allLinksCount": 28,
+    "foundLink": {
+      "href": "https://www.district-immo.com/espace-vendeur/",
+      "text": "plus d’informations ici",
+      "outerHTML": "<a href=\"https://www.district-immo.com/espace-vendeur/\">plus d’informations ici</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 2423
+  },
+  {
+    "url": "https://www.kaleidoblog.net/comment-obtenir-une-estimation-immobiliere-precise/",
+    "landingPage": "https://www.district-immo.com/estimation-en-ligne/",
+    "scrapedAt": "2025-11-12T10:55:06.106Z",
+    "success": true,
+    "allLinksCount": 27,
+    "foundLink": {
+      "href": "https://www.district-immo.com/estimation-en-ligne/paris-16/",
+      "text": "estimation immobilière à Paris 16",
+      "outerHTML": "<a href=\"https://www.district-immo.com/estimation-en-ligne/paris-16/\" rel=\" \" target=\"_blank\">estimation immobilière à Paris 16</a>",
+      "matched": true,
+      "matchType": "domain",
+      "rel": " ",
+      "link_type": ""
+    },
+    "netlinkId": 2421
+  },
+  {
+    "url": "https://www.mixblog.fr/estimer-un-bien-immobilier-au-champ-de-mars/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:55:06.588Z",
+    "success": true,
+    "allLinksCount": 15,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "estimation immobilière au champ de mars",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\" target=\"_blank\" rel=\"\">estimation immobilière au champ de mars</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 1490
+  },
+  {
+    "url": "https://www.immobjectif.com/faire-estimer-un-bien-immobilier-a-paris-16/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:55:06.591Z",
+    "success": true,
+    "allLinksCount": 24,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "estimation immobilière paris 6",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" rel=\" \" target=\"_blank\">estimation immobilière paris 6</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": " ",
+      "link_type": ""
+    },
+    "netlinkId": 1488
+  },
+  {
+    "url": "https://www.immobilier-coaching.fr/vente-dappartement-a-saint-germain-faire-une-estimation-pour-fixer-le-prix/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:55:08.426Z",
+    "success": true,
+    "allLinksCount": 24,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "estimation prix appartement saint germain",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" target=\"_blank\" rel=\"\">estimation prix appartement saint germain</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 1487
+  },
+  {
+    "url": "https://www.ifmag.fr/faire-une-estimation-d-appartement-a-lile-saint-louis/",
+    "landingPage": "https://www.district-immo.com/agences/ile-saint-louis/",
+    "scrapedAt": "2025-11-12T10:55:08.847Z",
+    "success": true,
+    "allLinksCount": 27,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/ile-saint-louis/",
+      "text": "cliquez-ici",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/ile-saint-louis/\" target=\"_blank\" rel=\" \">cliquez-ici</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": " ",
+      "link_type": ""
+    },
+    "netlinkId": 1486
+  },
+  {
+    "url": "https://www.blingcool.fr/comment-estimer-votre-bien-immobilier-a-saint-germain/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:55:09.067Z",
+    "success": true,
+    "allLinksCount": 16,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "district-immo.com",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" rel=\"\" target=\"_blank\">district-immo.com</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 1485
+  },
+  {
+    "url": "https://www.avenuedelimmo.com/comment-connaitre-la-valeur-d-un-bien-immobilier/",
+    "landingPage": "https://www.district-immo.com/agences/ile-saint-louis/",
+    "scrapedAt": "2025-11-12T10:55:10.535Z",
+    "success": true,
+    "allLinksCount": 14,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/ile-saint-louis/",
+      "text": "estimation d’immobilier ile saint louis",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/ile-saint-louis/\" target=\"_blank\" rel=\"\">estimation d’immobilier ile saint louis</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 1484
+  },
+  {
+    "url": "http://www.rapid-immo.com/estimation-immobiliere-a-saint-germain-faire-appel-a-un-specialiste/",
+    "landingPage": "https://www.district-immo.com/agences/saint-germain/",
+    "scrapedAt": "2025-11-12T10:55:11.041Z",
+    "success": true,
+    "allLinksCount": 24,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/saint-germain/",
+      "text": "estimation bien immobilier saint germain",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/saint-germain/\" target=\"_blank\" rel=\" \">estimation bien immobilier saint germain</a>",
+      "matched": true,
+      "matchType": "exact",
+      "rel": " ",
+      "link_type": ""
+    },
+    "netlinkId": 1483
+  },
+  {
+    "url": "http://www.actualites-immobilieres.com/estimation-immobiliere-et-prix-de-l-immobilier-a-paris/",
+    "landingPage": "https://www.district-immo.com/agences/champ-de-mars/",
+    "scrapedAt": "2025-11-12T10:55:11.254Z",
+    "success": true,
+    "allLinksCount": 23,
+    "foundLink": {
+      "href": "https://www.district-immo.com/agences/champ-de-mars/",
+      "text": "page",
+      "outerHTML": "<a href=\"https://www.district-immo.com/agences/champ-de-mars/\" target=\"_blank\" rel=\"\">page</a>",
+      "matched": true,
+      "matchType": "exact",
+      "link_type": "DoFollow"
+    },
+    "netlinkId": 1482
+  }
+]

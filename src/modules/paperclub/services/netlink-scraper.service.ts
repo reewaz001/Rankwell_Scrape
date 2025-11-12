@@ -3,6 +3,8 @@ import { LightpandaService } from '../../../common/lightpanda.service';
 import { NetlinkService, NetlinkItem } from './netlink.service';
 import { DashboardHttpClient } from '../../../common/dashboard-http-client.service';
 import type { Page } from 'playwright-core';
+import * as fs from 'fs/promises';
+import * as path from 'path';
 
 /**
  * Scraped Data Interface
@@ -21,7 +23,7 @@ export interface ScrapedNetlinkData {
     text: string;
     outerHTML: string;
     matched: boolean;
-    matchType?: 'exact' | 'domain' | 'subdomain';
+    matchType?: 'exact' | 'domain' | 'subdomain' | 'partial';
     rel?: string;
     link_type?: string;
   };
@@ -41,6 +43,8 @@ export interface ScrapeOptions {
   retries?: number;
   delay?: number;
   skipErrors?: boolean;
+  enableLogging?: boolean;
+  logFilePath?: string;
   onProgress?: (current: number, total: number, url: string) => void;
   onSuccess?: (data: ScrapedNetlinkData) => void | Promise<void>;
   onError?: (url: string, error: Error) => void | Promise<void>;
@@ -95,12 +99,117 @@ export interface BatchUpsertRequest {
 @Injectable()
 export class NetlinkScraperService {
   private readonly logger = new Logger(NetlinkScraperService.name);
+  private logFilePath: string | null = null;
+  private logBuffer: string[] = [];
 
   constructor(
     private readonly lightpanda: LightpandaService,
     private readonly netlinkService: NetlinkService,
     private readonly dashboardClient: DashboardHttpClient,
   ) {}
+
+  /**
+   * Initialize logging to a file
+   */
+  private async initializeLogging(logFilePath?: string): Promise<void> {
+    if (!logFilePath) {
+      const logsDir = path.join(process.cwd(), 'logs');
+      await fs.mkdir(logsDir, { recursive: true });
+
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      this.logFilePath = path.join(logsDir, `netlink-scraper-${timestamp}.log`);
+    } else {
+      this.logFilePath = logFilePath;
+      const logDir = path.dirname(logFilePath);
+      await fs.mkdir(logDir, { recursive: true });
+    }
+
+    this.logBuffer = [];
+    await this.writeLog('='.repeat(80));
+    await this.writeLog(`NETLINK SCRAPER LOG - ${new Date().toISOString()}`);
+    await this.writeLog('='.repeat(80));
+    this.logger.log(`Logging initialized: ${this.logFilePath}`);
+  }
+
+  /**
+   * Write a log entry to file
+   */
+  private async writeLog(message: string): Promise<void> {
+    if (!this.logFilePath) return;
+
+    const timestamp = new Date().toISOString();
+    const logEntry = `[${timestamp}] ${message}\n`;
+    this.logBuffer.push(logEntry);
+
+    // Flush buffer if it gets too large (every 10 entries)
+    if (this.logBuffer.length >= 10) {
+      await this.flushLogs();
+    }
+  }
+
+  /**
+   * Flush log buffer to file
+   */
+  private async flushLogs(): Promise<void> {
+    if (!this.logFilePath || this.logBuffer.length === 0) return;
+
+    try {
+      await fs.appendFile(this.logFilePath, this.logBuffer.join(''));
+      this.logBuffer = [];
+    } catch (error) {
+      this.logger.error(`Failed to write logs: ${error.message}`);
+    }
+  }
+
+  /**
+   * Log detailed netlink information
+   */
+  private async logNetlinkDetails(netlink: NetlinkItem, result: ScrapedNetlinkData): Promise<void> {
+    if (!this.logFilePath) return;
+
+    await this.writeLog('');
+    await this.writeLog('-'.repeat(80));
+    await this.writeLog(`NETLINK ID: ${netlink.id || 'N/A'}`);
+    await this.writeLog(`CONTRACT ID: ${netlink.contract_id || 'N/A'}`);
+    await this.writeLog(`URL: ${result.url}`);
+    await this.writeLog(`LANDING PAGE: ${result.landingPage || 'N/A'}`);
+    await this.writeLog(`STATUS: ${result.success ? 'SUCCESS' : 'FAILED'}`);
+
+    if (result.success) {
+      await this.writeLog(`ALL LINKS FOUND: ${result.allLinksCount || 0}`);
+
+      if (result.foundLink) {
+        await this.writeLog(`LINK MATCHED: ${result.foundLink.matched}`);
+        if (result.foundLink.matched) {
+          await this.writeLog(`MATCH TYPE: ${result.foundLink.matchType || 'N/A'}`);
+          await this.writeLog(`LINK TYPE: ${result.foundLink.link_type || 'unknown'}`);
+          await this.writeLog(`LINK HREF: ${result.foundLink.href}`);
+          await this.writeLog(`LINK TEXT: ${result.foundLink.text}`);
+          await this.writeLog(`LINK REL: ${result.foundLink.rel || 'none'}`);
+        }
+      }
+    } else {
+      await this.writeLog(`ERROR: ${result.error}`);
+    }
+
+    await this.writeLog(`SCRAPED AT: ${result.scrapedAt}`);
+    await this.writeLog('-'.repeat(80));
+  }
+
+  /**
+   * Finalize logging (flush remaining logs)
+   */
+  private async finalizeLogging(): Promise<void> {
+    if (!this.logFilePath) return;
+
+    await this.writeLog('');
+    await this.writeLog('='.repeat(80));
+    await this.writeLog(`SCRAPING COMPLETED - ${new Date().toISOString()}`);
+    await this.writeLog('='.repeat(80));
+    await this.flushLogs();
+
+    this.logger.log(`Logs saved to: ${this.logFilePath}`);
+  }
 
   /**
    * Transform scraped result to NetlinkAdditionalInfo format
@@ -113,19 +222,12 @@ export class NetlinkScraperService {
     }
 
     // Determine link_type from the foundLink
+    // Since we now set link_type to exactly "dofollow" or "nofollow" during extraction,
+    // we can use it directly. Default to 'unknown' if not available.
     let link_type = 'unknown'; // Default to unknown
 
     if (result.success && result.foundLink?.matched && result.foundLink?.link_type) {
-      // Parse the link_type from the scraped data
-      const linkTypeStr = result.foundLink.link_type.toLowerCase();
-
-      // Check if it contains 'nofollow'
-      if (linkTypeStr.includes('nofollow')) {
-        link_type = 'nofollow';
-      } else {
-        // If no 'nofollow' found, it's a dofollow link
-        link_type = 'dofollow';
-      }
+      link_type = result.foundLink.link_type; // Already 'dofollow' or 'nofollow'
     }
 
     // Determine online_status
@@ -213,7 +315,7 @@ export class NetlinkScraperService {
   /**
    * Check if a link URL matches the landing page URL
    */
-  private doesUrlMatch(linkHref: string, landingPage: string): { matched: boolean; matchType?: 'exact' | 'domain' | 'subdomain' } {
+  private doesUrlMatch(linkHref: string, landingPage: string): { matched: boolean; matchType?: 'exact' | 'domain' | 'subdomain' | 'partial' } {
     if (!linkHref || !landingPage) {
       return { matched: false };
     }
@@ -226,26 +328,51 @@ export class NetlinkScraperService {
       return { matched: true, matchType: 'exact' };
     }
 
-    // Domain match (link contains landing page domain)
+    // Link contains the landing page (e.g., landing is a subdirectory)
     if (normalizedLink.includes(normalizedLanding)) {
       return { matched: true, matchType: 'domain' };
     }
 
-    // Subdomain match (landing page might be subdomain)
+    // Landing contains the link (e.g., link is shorter/partial)
     if (normalizedLanding.includes(normalizedLink)) {
       return { matched: true, matchType: 'subdomain' };
     }
 
-    // Extract just the domain (without path)
+    // Extract domain and path separately for more flexible matching
     const getLandingDomain = (url: string) => {
       return url.split('/')[0];
     };
 
+    const getPath = (url: string) => {
+      const parts = url.split('/');
+      return parts.slice(1).join('/');
+    };
+
     const linkDomain = getLandingDomain(normalizedLink);
     const landingDomain = getLandingDomain(normalizedLanding);
+    const linkPath = getPath(normalizedLink);
+    const landingPath = getPath(normalizedLanding);
 
+    // Same domain check
     if (linkDomain === landingDomain) {
-      return { matched: true, matchType: 'domain' };
+      // If domains match, check if paths are similar
+      if (linkPath === landingPath) {
+        return { matched: true, matchType: 'exact' };
+      }
+      // Check if one path contains the other
+      if (linkPath && landingPath && (linkPath.includes(landingPath) || landingPath.includes(linkPath))) {
+        return { matched: true, matchType: 'partial' };
+      }
+      // If paths don't match but domains do, still consider it a domain match
+      if (linkPath && landingPath) {
+        return { matched: true, matchType: 'domain' };
+      }
+    }
+
+    // Check if link domain is part of landing domain or vice versa
+    // (handles subdomains like blog.example.com vs example.com)
+    if (linkDomain.includes(landingDomain) || landingDomain.includes(linkDomain)) {
+      return { matched: true, matchType: 'subdomain' };
     }
 
     return { matched: false };
@@ -258,6 +385,9 @@ export class NetlinkScraperService {
     try {
       // Wait for page to load
       await page.waitForSelector('body', { timeout: 5000 });
+
+      // Wait a bit for dynamic content to load
+      await page.waitForTimeout(2000);
 
       // Get all links from the page with rel attribute
       const linksData = await page.evaluate(() => {
@@ -288,12 +418,15 @@ export class NetlinkScraperService {
           this.logger.log(`✓ Found matching link: ${link.href} (${matchResult.matchType} match)`);
 
           // Determine link_type based on rel attribute
-          let link_type = 'DoFollow'; // Default if no rel attribute
+          // Rule: If rel contains "nofollow" in any combination -> nofollow
+          //       Otherwise (no rel or rel without nofollow) -> dofollow
+          let link_type = 'dofollow'; // Default
 
-          if (link.rel) {
-            // If rel exists, use its value (can be space-separated like "nofollow ugc")
-            link_type = link.rel.trim();
+          if (link.rel && link.rel.toLowerCase().includes('nofollow')) {
+            link_type = 'nofollow';
           }
+
+          this.logger.log(`  Link type: ${link_type} (rel="${link.rel || 'none'}")`);
 
           return {
             allLinksCount: linksData.length,
@@ -411,10 +544,18 @@ export class NetlinkScraperService {
       retries = 3,
       delay = 1000,
       skipErrors = true,
+      enableLogging = false,
+      logFilePath,
       onProgress,
       onSuccess,
       onError,
     } = options || {};
+
+    // Initialize logging if enabled
+    if (enableLogging) {
+      await this.initializeLogging(logFilePath);
+      await this.writeLog(`Starting to scrape ${netlinks.length} netlinks with concurrency ${concurrency}`);
+    }
 
     this.logger.log(`Starting to scrape ${netlinks.length} netlinks with concurrency ${concurrency}`);
 
@@ -422,6 +563,7 @@ export class NetlinkScraperService {
     const queue = [...netlinks];
     let completed = 0;
     let activeWorkers = 0;
+    const netlinkMap = new Map(netlinks.map(n => [n.url_bought || n.url, n]));
 
     return new Promise((resolve, reject) => {
       const worker = async () => {
@@ -460,6 +602,11 @@ export class NetlinkScraperService {
 
             results.push(result);
 
+            // Log netlink details if logging is enabled
+            if (enableLogging) {
+              await this.logNetlinkDetails(netlink, result);
+            }
+
             // Success callback
             if (result.success && onSuccess) {
               await onSuccess(result);
@@ -483,6 +630,14 @@ export class NetlinkScraperService {
 
             results.push(errorResult);
 
+            // Log error details if logging is enabled
+            if (enableLogging) {
+              const netlinkObj = netlinkMap.get(url);
+              if (netlinkObj) {
+                await this.logNetlinkDetails(netlinkObj, errorResult);
+              }
+            }
+
             if (onError) {
               await onError(url, error);
             }
@@ -503,6 +658,10 @@ export class NetlinkScraperService {
 
         // All workers finished
         if (activeWorkers === 0 && queue.length === 0) {
+          // Finalize logging if enabled
+          if (enableLogging) {
+            await this.finalizeLogging();
+          }
           resolve(results);
         }
       };
@@ -513,6 +672,113 @@ export class NetlinkScraperService {
         worker().catch(reject);
       }
     });
+  }
+
+  /**
+   * Scrape netlinks filtered by contract_id (using backend API filtering)
+   */
+  async scrapeByContractId(
+    contractId: number | string,
+    options?: ScrapeOptions
+  ): Promise<ScrapingStats> {
+    const startTime = new Date();
+    const stats: ScrapingStats = {
+      total: 0,
+      successful: 0,
+      failed: 0,
+      skipped: 0,
+      duration: 0,
+      startTime,
+      errors: [],
+    };
+
+    try {
+      this.logger.log(`Fetching netlinks for contract_id: ${contractId} (API filtered)...`);
+
+      // Initialize logging if enabled
+      if (options?.enableLogging) {
+        await this.initializeLogging(options.logFilePath);
+        await this.writeLog(`Fetching netlinks for contract_id: ${contractId}`);
+      }
+
+      // Fetch netlinks filtered by contract_id from API
+      const netlinks = await this.netlinkService.fetchAllNetlinks({
+        limit: 100,
+        contractId: contractId,
+        onProgress: (page, totalPages, itemCount) => {
+          this.logger.log(`Fetching netlinks: Page ${page}/${totalPages} (${itemCount} items)`);
+        },
+      });
+
+      stats.total = netlinks.length;
+      this.logger.log(`Found ${netlinks.length} netlinks for contract_id ${contractId}. Starting scraping...`);
+
+      if (options?.enableLogging) {
+        await this.writeLog(`Netlinks found for contract_id ${contractId}: ${netlinks.length}`);
+      }
+
+      if (netlinks.length === 0) {
+        this.logger.warn(`No netlinks found for contract_id: ${contractId}`);
+        if (options?.enableLogging) {
+          await this.writeLog(`WARNING: No netlinks found for contract_id: ${contractId}`);
+          await this.finalizeLogging();
+        }
+        stats.endTime = new Date();
+        stats.duration = stats.endTime.getTime() - startTime.getTime();
+        return stats;
+      }
+
+      // Scrape netlinks
+      const results = await this.scrapeNetlinks(netlinks, {
+        ...options,
+        onProgress: (current, total, url) => {
+          const percentage = ((current / total) * 100).toFixed(1);
+          this.logger.log(`Progress: ${percentage}% (${current}/${total}) - ${url}`);
+
+          if (options?.onProgress) {
+            options.onProgress(current, total, url);
+          }
+        },
+        onSuccess: async (data) => {
+          stats.successful++;
+          if (options?.onSuccess) {
+            await options.onSuccess(data);
+          }
+        },
+        onError: async (url, error) => {
+          stats.failed++;
+          stats.errors.push({ url, error: error.message });
+          if (options?.onError) {
+            await options.onError(url, error);
+          }
+        },
+      });
+
+      stats.endTime = new Date();
+      stats.duration = stats.endTime.getTime() - startTime.getTime();
+
+      this.logger.log('='.repeat(60));
+      this.logger.log('SCRAPING COMPLETED');
+      this.logger.log('='.repeat(60));
+      this.logger.log(`Contract ID: ${contractId}`);
+      this.logger.log(`Total: ${stats.total}`);
+      this.logger.log(`Successful: ${stats.successful}`);
+      this.logger.log(`Failed: ${stats.failed}`);
+      this.logger.log(`Duration: ${(stats.duration / 1000).toFixed(2)}s`);
+      this.logger.log('='.repeat(60));
+
+      return stats;
+
+    } catch (error) {
+      this.logger.error(`Error in scrapeByContractId: ${error.message}`);
+      if (options?.enableLogging) {
+        await this.writeLog(`ERROR: ${error.message}`);
+        await this.finalizeLogging();
+      }
+      stats.endTime = new Date();
+      stats.duration = stats.endTime.getTime() - startTime.getTime();
+      throw error;
+    }
   }
 
   /**

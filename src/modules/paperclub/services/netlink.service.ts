@@ -38,6 +38,7 @@ export interface FetchNetlinkOptions {
   limit?: number;
   startPage?: number;
   maxPages?: number;
+  contractId?: number | string;
   onPageFetched?: (page: number, totalPages: number, items: number) => void;
   onProgress?: (
     currentPage: number,
@@ -76,12 +77,13 @@ export class NetlinkService {
       limit = 100,
       startPage = 1,
       maxPages = Infinity,
+      contractId,
       onPageFetched,
       onProgress,
     } = options || {};
 
     this.logger.log('Starting to fetch all netlink data...');
-    this.logger.log(`Configuration: limit=${limit}, startPage=${startPage}`);
+    this.logger.log(`Configuration: limit=${limit}, startPage=${startPage}${contractId ? `, contractId=${contractId}` : ''}`);
 
     const allData: NetlinkItem[] = [];
     let currentPage = startPage;
@@ -92,7 +94,7 @@ export class NetlinkService {
     try {
       while (hasNextPage && pagesProcessed < maxPages) {
         // Fetch current page
-        const response = await this.fetchPage(currentPage, limit);
+        const response = await this.fetchPage(currentPage, limit, contractId);
 
         // Add data to collection
         allData.push(...response.data);
@@ -140,17 +142,25 @@ export class NetlinkService {
   async fetchPage(
     page: number,
     limit: number = 100,
+    contractId?: number | string,
   ): Promise<PaginatedResponse> {
     try {
-      this.logger.debug(`Fetching page ${page} with limit ${limit}`);
+      this.logger.debug(`Fetching page ${page} with limit ${limit}${contractId ? ` for contract_id ${contractId}` : ''}`);
+
+      const params: any = {
+        page,
+        limit,
+      };
+
+      // Add contract_id to params if provided
+      if (contractId !== undefined && contractId !== null) {
+        params.contract_id = contractId;
+      }
 
       const response = await this.dashboardClient.get<PaginatedResponse>(
         this.endpoint,
         {
-          params: {
-            page,
-            limit,
-          },
+          params,
         },
       );
 

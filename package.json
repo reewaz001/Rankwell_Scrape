@@ -23,6 +23,8 @@
     "test:netlink-scraper": "ts-node src/cli/test-netlink-scraper.ts",
     "test:netlink-scraper-rest": "ts-node src/cli/test-netlink-scraper-rest.ts",
     "test:netlink-scraper:mock": "ts-node src/cli/test-netlink-scraper-mock.ts",
+    "test:netlink-scraper:contract": "ts-node src/cli/test-netlink-scraper-by-contract.ts",
+    "test:single-netlink": "ts-node src/cli/test-single-netlink.ts",
     "example:lightpanda": "ts-node src/examples/lightpanda-example.ts"
   },
   "dependencies": {

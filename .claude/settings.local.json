@@ -13,7 +13,10 @@
       "Bash(fi)",
       "Bash(npm run example:lightpanda:*)",
       "Bash(npm run test:dashboard:*)",
-      "Bash(npm run test:netlink-scraper:*)"
+      "Bash(npm run test:netlink-scraper:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run test:domdetailer:*)",
+      "Bash(npm run test:single-netlink:*)"
     ],
     "deny": [],
     "ask": []

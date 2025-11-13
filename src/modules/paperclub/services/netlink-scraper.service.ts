@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { LightpandaService } from '../../../common/lightpanda.service';
 import { NetlinkService, NetlinkItem } from './netlink.service';
 import { DashboardHttpClient } from '../../../common/dashboard-http-client.service';
+import { DomDetailerService, DomDetailerResult } from '../../../common/domdetailer.service';
 import type { Page } from 'playwright-core';
 import * as fs from 'fs/promises';
 import * as path from 'path';
@@ -16,6 +17,7 @@ export interface ScrapedNetlinkData {
   scrapedAt: string;
   success: boolean;
   error?: string;
+  statusCode?: number; // HTTP status code from page response
 
   // Found link data
   foundLink?: {
@@ -28,8 +30,20 @@ export interface ScrapedNetlinkData {
     link_type?: string;
   };
 
+  // Domain match (found domain but not exact URL)
+  domainFound?: boolean;
+  domainFoundLink?: {
+    href: string;
+    text: string;
+    rel?: string;
+    link_type?: string;
+  };
+
   // All links found (for debugging)
   allLinksCount?: number;
+
+  // DomDetailer data
+  domDetailer?: DomDetailerResult;
 
   [key: string]: any;
 }
@@ -45,6 +59,8 @@ export interface ScrapeOptions {
   skipErrors?: boolean;
   enableLogging?: boolean;
   logFilePath?: string;
+  enableDomDetailer?: boolean; // Enable DomDetailer integration
+  domDetailerConcurrency?: number; // Concurrency for DomDetailer checks
   onProgress?: (current: number, total: number, url: string) => void;
   onSuccess?: (data: ScrapedNetlinkData) => void | Promise<void>;
   onError?: (url: string, error: Error) => void | Promise<void>;
@@ -70,7 +86,9 @@ export interface ScrapingStats {
 export interface NetlinkAdditionalInfo {
   netlink_id: number;
   link_type: string; // 'dofollow' | 'nofollow' | 'unknown'
-  online_status: number; // 1 = link found & accessible, 2 = no matching link found, 3 = site not accessible/offline
+  online_status: number; // 1 = exact link found, 2 = no matching link found, 3 = site not accessible/offline, 4 = domain found but not exact URL
+  status_code?: number; // HTTP status code from page response
+  domDetailerData?: any; // DomDetailer complete response (all details under this key)
 }
 
 /**
@@ -106,6 +124,7 @@ export class NetlinkScraperService {
     private readonly lightpanda: LightpandaService,
     private readonly netlinkService: NetlinkService,
     private readonly dashboardClient: DashboardHttpClient,
+    private readonly domDetailerService: DomDetailerService,
   ) {}
 
   /**
@@ -186,6 +205,16 @@ export class NetlinkScraperService {
           await this.writeLog(`LINK HREF: ${result.foundLink.href}`);
           await this.writeLog(`LINK TEXT: ${result.foundLink.text}`);
           await this.writeLog(`LINK REL: ${result.foundLink.rel || 'none'}`);
+        } else if (result.domainFound) {
+          // Domain found but not exact URL
+          await this.writeLog(`DOMAIN MATCH FOUND: YES`);
+          await this.writeLog(`DOMAIN LINK TYPE: ${result.domainFoundLink?.link_type || 'unknown'}`);
+          await this.writeLog(`DOMAIN LINK HREF: ${result.domainFoundLink?.href || 'N/A'}`);
+          await this.writeLog(`DOMAIN LINK TEXT: ${result.domainFoundLink?.text || 'N/A'}`);
+          await this.writeLog(`DOMAIN LINK REL: ${result.domainFoundLink?.rel || 'none'}`);
+          await this.writeLog(`NOTE: Domain found but exact landing page URL not found`);
+        } else {
+          await this.writeLog(`DOMAIN MATCH FOUND: NO`);
         }
       }
     } else {
@@ -221,37 +250,62 @@ export class NetlinkScraperService {
       return null;
     }
 
-    // Determine link_type from the foundLink
-    // Since we now set link_type to exactly "dofollow" or "nofollow" during extraction,
-    // we can use it directly. Default to 'unknown' if not available.
+    // Determine link_type from the foundLink or domainFoundLink
     let link_type = 'unknown'; // Default to unknown
 
     if (result.success && result.foundLink?.matched && result.foundLink?.link_type) {
-      link_type = result.foundLink.link_type; // Already 'dofollow' or 'nofollow'
+      // Exact match found
+      link_type = result.foundLink.link_type;
+    } else if (result.success && result.domainFound && result.domainFoundLink?.link_type) {
+      // Domain match found
+      link_type = result.domainFoundLink.link_type;
     }
 
     // Determine online_status
-    // 1 = link found & accessible (success with matched link)
-    // 2 = no matching link found (success but link not matched)
+    // 1 = exact link found & accessible (success with matched link)
+    // 2 = no matching link found at all (success but no link or domain found)
     // 3 = site not accessible/offline (failed to scrape)
+    // 4 = domain found but not exact URL (success with domain match only)
     let online_status: number;
 
     if (!result.success) {
       // Site is not accessible or failed to scrape
       online_status = 3;
-    } else if (result.foundLink?.matched === false) {
-      // Site is accessible but no matching link found
-      online_status = 2;
-    } else {
-      // Site is accessible and matching link found
+    } else if (result.foundLink?.matched === true) {
+      // Site is accessible and exact matching link found
       online_status = 1;
+    } else if (result.domainFound === true) {
+      // Site is accessible and domain found but not exact URL
+      online_status = 4;
+    } else {
+      // Site is accessible but no matching link or domain found
+      online_status = 2;
     }
 
-    return {
+    // Build the additional info object
+    const additionalInfo: NetlinkAdditionalInfo = {
       netlink_id: Number(result.netlinkId),
       link_type,
       online_status,
     };
+
+    // Add status code if available
+    if (result.statusCode !== undefined) {
+      additionalInfo.status_code = result.statusCode;
+    }
+
+    // Add DomDetailer data if available - store complete result under domDetailerData key
+    if (result.domDetailer) {
+      additionalInfo.domDetailerData = {
+        url: result.domDetailer.url,
+        success: result.domDetailer.success,
+        checkedAt: result.domDetailer.checkedAt,
+        ...(result.domDetailer.success && result.domDetailer.data ? { data: result.domDetailer.data } : {}),
+        ...(result.domDetailer.error ? { error: result.domDetailer.error } : {}),
+      };
+    }
+
+    return additionalInfo;
   }
 
   /**
@@ -443,8 +497,55 @@ export class NetlinkScraperService {
         }
       }
 
-      // No matching link found
-      this.logger.warn(`No matching link found for landing page: ${landingPage}`);
+      // No exact matching link found, check for domain-only match
+      this.logger.warn(`No exact matching link found for landing page: ${landingPage}`);
+      this.logger.log(`Checking for domain-only matches...`);
+
+      // Extract domain from landing page
+      const getLandingDomain = (url: string) => {
+        const normalized = this.normalizeUrl(url);
+        return normalized.split('/')[0];
+      };
+
+      const landingDomain = getLandingDomain(landingPage);
+      this.logger.debug(`Landing page domain: ${landingDomain}`);
+
+      // Check if any link has the same domain
+      for (const link of linksData) {
+        const linkDomain = getLandingDomain(link.href);
+
+        if (linkDomain === landingDomain) {
+          this.logger.log(`✓ Found domain match: ${link.href}`);
+
+          // Determine link_type
+          let link_type = 'dofollow';
+          if (link.rel && link.rel.toLowerCase().includes('nofollow')) {
+            link_type = 'nofollow';
+          }
+
+          this.logger.log(`  Link type: ${link_type} (rel="${link.rel || 'none'}")`);
+
+          return {
+            allLinksCount: linksData.length,
+            foundLink: {
+              href: '',
+              text: '',
+              outerHTML: '',
+              matched: false,
+            },
+            domainFound: true,
+            domainFoundLink: {
+              href: link.href,
+              text: link.text,
+              rel: link.rel || undefined,
+              link_type: link_type,
+            },
+          };
+        }
+      }
+
+      // No match at all (not even domain)
+      this.logger.warn(`No domain match found either`);
 
       return {
         allLinksCount: linksData.length,
@@ -454,6 +555,7 @@ export class NetlinkScraperService {
           outerHTML: '',
           matched: false,
         },
+        domainFound: false,
       };
 
     } catch (error) {
@@ -482,16 +584,22 @@ export class NetlinkScraperService {
           // Set timeout for page operations
           page.setDefaultTimeout(timeout);
 
-          // Navigate to URL
-          await page.goto(url, {
+          // Navigate to URL and capture response
+          const response = await page.goto(url, {
             waitUntil: 'domcontentloaded',
             timeout,
           });
 
+          // Get status code from response
+          const statusCode = response?.status();
+
           // Extract data using the extractData method
           const extractedData = await this.extractData(page, url, landingPage);
 
-          return extractedData;
+          return {
+            ...extractedData,
+            statusCode,
+          };
         });
 
         // Return successful result
@@ -529,6 +637,59 @@ export class NetlinkScraperService {
   }
 
   /**
+   * Check DomDetailer for scraped URLs
+   */
+  private async checkDomDetailerForResults(
+    results: ScrapedNetlinkData[],
+    options?: Pick<ScrapeOptions, 'domDetailerConcurrency' | 'enableLogging'>
+  ): Promise<void> {
+    const { domDetailerConcurrency = 3, enableLogging = false } = options || {};
+
+    this.logger.log(`Checking DomDetailer for ${results.length} URLs...`);
+
+    if (enableLogging) {
+      await this.writeLog(`Starting DomDetailer checks for ${results.length} URLs`);
+    }
+
+    // Extract URLs to check
+    const urlsToCheck = results.map(r => r.url);
+
+    // Check all URLs using DomDetailer with concurrency
+    const domDetailerResults = await this.domDetailerService.checkDomainsBatchConcurrent(
+      urlsToCheck,
+      domDetailerConcurrency
+    );
+
+    // Map results back to ScrapedNetlinkData
+    const domDetailerMap = new Map(domDetailerResults.map(r => [r.url, r]));
+
+    for (const result of results) {
+      const domDetailerResult = domDetailerMap.get(result.url);
+      if (domDetailerResult) {
+        result.domDetailer = domDetailerResult;
+
+        if (enableLogging) {
+          await this.writeLog(
+            `DomDetailer check for ${result.url}: ${domDetailerResult.success ? 'SUCCESS' : 'FAILED'}`
+          );
+          if (domDetailerResult.success && domDetailerResult.data) {
+            await this.writeLog(`  Data: ${JSON.stringify(domDetailerResult.data, null, 2)}`);
+          } else if (domDetailerResult.error) {
+            await this.writeLog(`  Error: ${domDetailerResult.error}`);
+          }
+        }
+      }
+    }
+
+    const successful = domDetailerResults.filter(r => r.success).length;
+    this.logger.log(`DomDetailer checks complete: ${successful}/${results.length} successful`);
+
+    if (enableLogging) {
+      await this.writeLog(`DomDetailer checks complete: ${successful}/${results.length} successful`);
+    }
+  }
+
+  /**
    * Scrape multiple netlinks with concurrency control
    *
    * Supports concurrent scraping with local Lightpanda browser.
@@ -546,6 +707,8 @@ export class NetlinkScraperService {
       skipErrors = true,
       enableLogging = false,
       logFilePath,
+      enableDomDetailer = false,
+      domDetailerConcurrency = 3,
       onProgress,
       onSuccess,
       onError,
@@ -658,6 +821,22 @@ export class NetlinkScraperService {
 
         // All workers finished
         if (activeWorkers === 0 && queue.length === 0) {
+          // Check DomDetailer if enabled
+          if (enableDomDetailer) {
+            this.logger.log('Scraping complete. Starting DomDetailer checks...');
+            try {
+              await this.checkDomDetailerForResults(results, {
+                domDetailerConcurrency,
+                enableLogging,
+              });
+            } catch (error) {
+              this.logger.error(`DomDetailer check failed: ${error.message}`);
+              if (enableLogging) {
+                await this.writeLog(`ERROR: DomDetailer check failed: ${error.message}`);
+              }
+            }
+          }
+
           // Finalize logging if enabled
           if (enableLogging) {
             await this.finalizeLogging();

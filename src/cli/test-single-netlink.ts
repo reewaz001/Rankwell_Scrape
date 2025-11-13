@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../app.module';
 import { NetlinkScraperService } from '../modules/paperclub/services/netlink-scraper.service';
 import { LightpandaService } from '../common/lightpanda.service';
+import * as fs from 'fs/promises';
+import * as path from 'path';
 
 /**
  * Test script for debugging a single netlink scraping issue
@@ -47,15 +49,28 @@ async function testSingleNetlink() {
 
     await lightpandaService.withPage(async (page) => {
       // Navigate to the page
-      await page.goto(url, {
+      const response = await page.goto(url, {
         waitUntil: 'domcontentloaded',
         timeout: 30000,
       });
 
-      console.log('✓ Page loaded successfully\n');
+      const statusCode = response?.status();
+      console.log('✓ Page loaded successfully');
+      console.log(`✓ HTTP Status Code: ${statusCode}\n`);
 
       // Wait for body
       await page.waitForSelector('body', { timeout: 5000 });
+
+      // Get and save page source
+      const pageSource = await page.content();
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const logsDir = path.join(process.cwd(), 'logs', 'page-sources');
+      await fs.mkdir(logsDir, { recursive: true });
+
+      const sourceFilePath = path.join(logsDir, `page-source-${timestamp}.html`);
+      await fs.writeFile(sourceFilePath, pageSource, 'utf-8');
+
+      console.log(`✓ Page source saved to: ${sourceFilePath}\n`);
 
       // Get all links with detailed information
       const linksData = await page.evaluate(() => {
@@ -74,6 +89,17 @@ async function testSingleNetlink() {
       console.log('='.repeat(80));
       console.log(`FOUND ${linksData.length} LINKS ON THE PAGE`);
       console.log('='.repeat(80));
+
+      // Save all links to JSON file for easier analysis
+      const linksFilePath = path.join(logsDir, `links-${timestamp}.json`);
+      await fs.writeFile(linksFilePath, JSON.stringify({
+        url,
+        landingPage,
+        scrapedAt: new Date().toISOString(),
+        totalLinks: linksData.length,
+        links: linksData,
+      }, null, 2), 'utf-8');
+      console.log(`✓ All links saved to: ${linksFilePath}\n`);
 
       // Helper function to normalize URL
       const normalizeUrl = (urlStr: string): string => {
@@ -203,6 +229,24 @@ async function testSingleNetlink() {
         console.log('\nAll links found on the page are listed above for manual inspection.');
       }
       console.log('='.repeat(80));
+
+      // Save test summary
+      const summaryFilePath = path.join(logsDir, `summary-${timestamp}.json`);
+      await fs.writeFile(summaryFilePath, JSON.stringify({
+        testUrl: url,
+        landingPage,
+        testedAt: new Date().toISOString(),
+        matchFound,
+        totalLinksFound: linksData.length,
+        normalizedLandingPage: normalizeUrl(landingPage),
+        files: {
+          pageSource: sourceFilePath,
+          allLinks: linksFilePath,
+          summary: summaryFilePath,
+        },
+      }, null, 2), 'utf-8');
+
+      console.log(`\n✓ Test summary saved to: ${summaryFilePath}`);
 
       // Show normalized URLs for comparison
       console.log('\n' + '='.repeat(80));

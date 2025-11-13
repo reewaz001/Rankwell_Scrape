@@ -10,6 +10,7 @@ import { BQSCalculatorService } from '../../scoring/bqs-calculator.service';
 import { DatabaseService } from '../../common/database.service';
 import { LightpandaService } from '../../common/lightpanda.service';
 import { DashboardHttpClient } from '../../common/dashboard-http-client.service';
+import { DomDetailerService } from '../../common/domdetailer.service';
 
 /**
  * Paper.club Module
@@ -35,6 +36,7 @@ import { DashboardHttpClient } from '../../common/dashboard-http-client.service'
     DatabaseService,
     LightpandaService,
     DashboardHttpClient,
+    DomDetailerService,
   ],
   exports: [
     PaperClubScraperService,
@@ -45,6 +47,7 @@ import { DashboardHttpClient } from '../../common/dashboard-http-client.service'
     DatabaseService,
     LightpandaService,
     DashboardHttpClient,
+    DomDetailerService,
   ],
 })
 export class PaperClubModule {}

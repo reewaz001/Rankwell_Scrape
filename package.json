@@ -25,7 +25,8 @@
     "test:netlink-scraper:mock": "ts-node src/cli/test-netlink-scraper-mock.ts",
     "test:netlink-scraper:contract": "ts-node src/cli/test-netlink-scraper-by-contract.ts",
     "test:single-netlink": "ts-node src/cli/test-single-netlink.ts",
-    "test:domdetailer": "ts-node src/cli/test-domdetailer-integration.ts",
+    "test:domdetailer": "ts-node src/cli/test-domdetailer.ts",
+    "test:domdetailer:integration": "ts-node src/cli/test-domdetailer-integration.ts",
     "example:lightpanda": "ts-node src/examples/lightpanda-example.ts",
     "example:domdetailer": "ts-node src/examples/domdetailer-example.ts"
   },

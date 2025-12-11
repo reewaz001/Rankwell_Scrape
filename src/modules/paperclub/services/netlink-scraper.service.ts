@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { LightpandaService } from '../../../common/lightpanda.service';
 import { NetlinkService, NetlinkItem } from './netlink.service';
 import { DashboardHttpClient } from '../../../common/dashboard-http-client.service';
-import { DomDetailerService, DomDetailerResult } from '../../../common/domdetailer.service';
+
 import type { Page } from 'playwright-core';
 import * as fs from 'fs/promises';
 import * as path from 'path';
@@ -42,8 +42,6 @@ export interface ScrapedNetlinkData {
   // All links found (for debugging)
   allLinksCount?: number;
 
-  // DomDetailer data
-  domDetailer?: DomDetailerResult;
 
   [key: string]: any;
 }
@@ -59,8 +57,6 @@ export interface ScrapeOptions {
   skipErrors?: boolean;
   enableLogging?: boolean;
   logFilePath?: string;
-  enableDomDetailer?: boolean; // Enable DomDetailer integration
-  domDetailerConcurrency?: number; // Concurrency for DomDetailer checks
   onProgress?: (current: number, total: number, url: string) => void;
   onSuccess?: (data: ScrapedNetlinkData) => void | Promise<void>;
   onError?: (url: string, error: Error) => void | Promise<void>;
@@ -88,7 +84,6 @@ export interface NetlinkAdditionalInfo {
   link_type: string; // 'dofollow' | 'nofollow' | 'unknown'
   online_status: number; // 1 = exact link found, 2 = no matching link found, 3 = site not accessible/offline, 4 = domain found but not exact URL
   status_code?: number; // HTTP status code from page response
-  domDetailerData?: any; // DomDetailer complete response (all details under this key)
 }
 
 /**
@@ -124,7 +119,6 @@ export class NetlinkScraperService {
     private readonly lightpanda: LightpandaService,
     private readonly netlinkService: NetlinkService,
     private readonly dashboardClient: DashboardHttpClient,
-    private readonly domDetailerService: DomDetailerService,
   ) {}
 
   /**
@@ -294,16 +288,6 @@ export class NetlinkScraperService {
       additionalInfo.status_code = result.statusCode;
     }
 
-    // Add DomDetailer data if available - store complete result under domDetailerData key
-    if (result.domDetailer) {
-      additionalInfo.domDetailerData = {
-        url: result.domDetailer.url,
-        success: result.domDetailer.success,
-        checkedAt: result.domDetailer.checkedAt,
-        ...(result.domDetailer.success && result.domDetailer.data ? { data: result.domDetailer.data } : {}),
-        ...(result.domDetailer.error ? { error: result.domDetailer.error } : {}),
-      };
-    }
 
     return additionalInfo;
   }
@@ -636,58 +620,6 @@ export class NetlinkScraperService {
     };
   }
 
-  /**
-   * Check DomDetailer for scraped URLs
-   */
-  private async checkDomDetailerForResults(
-    results: ScrapedNetlinkData[],
-    options?: Pick<ScrapeOptions, 'domDetailerConcurrency' | 'enableLogging'>
-  ): Promise<void> {
-    const { domDetailerConcurrency = 3, enableLogging = false } = options || {};
-
-    this.logger.log(`Checking DomDetailer for ${results.length} URLs...`);
-
-    if (enableLogging) {
-      await this.writeLog(`Starting DomDetailer checks for ${results.length} URLs`);
-    }
-
-    // Extract URLs to check
-    const urlsToCheck = results.map(r => r.url);
-
-    // Check all URLs using DomDetailer with concurrency
-    const domDetailerResults = await this.domDetailerService.checkDomainsBatchConcurrent(
-      urlsToCheck,
-      domDetailerConcurrency
-    );
-
-    // Map results back to ScrapedNetlinkData
-    const domDetailerMap = new Map(domDetailerResults.map(r => [r.url, r]));
-
-    for (const result of results) {
-      const domDetailerResult = domDetailerMap.get(result.url);
-      if (domDetailerResult) {
-        result.domDetailer = domDetailerResult;
-
-        if (enableLogging) {
-          await this.writeLog(
-            `DomDetailer check for ${result.url}: ${domDetailerResult.success ? 'SUCCESS' : 'FAILED'}`
-          );
-          if (domDetailerResult.success && domDetailerResult.data) {
-            await this.writeLog(`  Data: ${JSON.stringify(domDetailerResult.data, null, 2)}`);
-          } else if (domDetailerResult.error) {
-            await this.writeLog(`  Error: ${domDetailerResult.error}`);
-          }
-        }
-      }
-    }
-
-    const successful = domDetailerResults.filter(r => r.success).length;
-    this.logger.log(`DomDetailer checks complete: ${successful}/${results.length} successful`);
-
-    if (enableLogging) {
-      await this.writeLog(`DomDetailer checks complete: ${successful}/${results.length} successful`);
-    }
-  }
 
   /**
    * Scrape multiple netlinks with concurrency control
@@ -707,8 +639,6 @@ export class NetlinkScraperService {
       skipErrors = true,
       enableLogging = false,
       logFilePath,
-      enableDomDetailer = false,
-      domDetailerConcurrency = 3,
       onProgress,
       onSuccess,
       onError,
@@ -821,21 +751,6 @@ export class NetlinkScraperService {
 
         // All workers finished
         if (activeWorkers === 0 && queue.length === 0) {
-          // Check DomDetailer if enabled
-          if (enableDomDetailer) {
-            this.logger.log('Scraping complete. Starting DomDetailer checks...');
-            try {
-              await this.checkDomDetailerForResults(results, {
-                domDetailerConcurrency,
-                enableLogging,
-              });
-            } catch (error) {
-              this.logger.error(`DomDetailer check failed: ${error.message}`);
-              if (enableLogging) {
-                await this.writeLog(`ERROR: DomDetailer check failed: ${error.message}`);
-              }
-            }
-          }
 
           // Finalize logging if enabled
           if (enableLogging) {

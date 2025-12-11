@@ -16,7 +16,10 @@
       "Bash(npm run test:netlink-scraper:*)",
       "Bash(npx tsc:*)",
       "Bash(npm run test:domdetailer:*)",
-      "Bash(npm run test:single-netlink:*)"
+      "Bash(npm run test:single-netlink:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 5 ts-node:*)",
+      "Bash(npx ts-node:*)"
     ],
     "deny": [],
     "ask": []

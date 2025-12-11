@@ -25,10 +25,7 @@ async function testScraperWithMockData() {
   // Mock dashboard client (not used in this test)
   const dashboardClient = null as any;
 
-  // Mock domdetailer service (not used in this test)
-  const domDetailerService = null as any;
-
-  const scraperService = new NetlinkScraperService(lightpanda, netlinkService, dashboardClient, domDetailerService);
+  const scraperService = new NetlinkScraperService(lightpanda, netlinkService, dashboardClient);
 
   try {
     console.log('\nTest 1: Scraping example.com and looking for example.com links');

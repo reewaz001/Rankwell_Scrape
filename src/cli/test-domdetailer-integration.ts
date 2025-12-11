@@ -51,13 +51,11 @@ async function bootstrap() {
 
     const startTime = Date.now();
 
-    // Scrape with DomDetailer enabled
+    // Scrape netlinks
     const results = await scraperService.scrapeNetlinks(sampleNetlinks, {
       concurrency: 1, // Use 1 to see results sequentially
       timeout: 30000,
       retries: 2,
-      enableDomDetailer: true, // ENABLE DOMDETAILER
-      domDetailerConcurrency: 2,
       enableLogging: true, // Enable logging to see details
       onProgress: (current, total, url) => {
         console.log(`\n  Progress: ${current}/${total} - Scraping ${url}...`);

@@ -26,6 +26,7 @@ export class LightpandaService implements OnModuleDestroy {
   private readonly logger = new Logger(LightpandaService.name);
   private browser: Browser | null = null;
   private readonly headless: boolean;
+  private contextCreationLock: Promise<void> = Promise.resolve();
 
   constructor(private readonly configService: ConfigService) {
     // Configuration for Playwright browser
@@ -87,7 +88,7 @@ export class LightpandaService implements OnModuleDestroy {
 
   /**
    * Create a new browser context with anti-bot detection
-   * Multiple contexts can run concurrently
+   * Context creation is serialized to avoid race conditions in playwright-extra stealth plugin
    */
   async createContext(options?: {
     userAgent?: string;
@@ -95,65 +96,81 @@ export class LightpandaService implements OnModuleDestroy {
     locale?: string;
     timezoneId?: string;
   }): Promise<BrowserContext> {
-    const browser = await this.getBrowser();
+    // Serialize context creation to avoid CDP race conditions in stealth plugin
+    const previousLock = this.contextCreationLock;
+    let releaseLock: () => void;
 
-    // Default realistic browser configuration
-    const contextOptions = {
-      userAgent: options?.userAgent ||
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      viewport: options?.viewport || { width: 1920, height: 1080 },
-      locale: options?.locale || 'fr-FR',
-      timezoneId: options?.timezoneId || 'Europe/Paris',
-      // Additional anti-bot features
-      extraHTTPHeaders: {
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'DNT': '1',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0',
-      },
-    };
-
-    const context = await browser.newContext(contextOptions);
-
-    // Add script to mask automation
-    await context.addInitScript(() => {
-      // Remove webdriver property
-      Object.defineProperty(navigator, 'webdriver', {
-        get: () => false,
-      });
-
-      // Mock chrome object
-      (window as any).chrome = {
-        runtime: {},
-      };
-
-      // Mock permissions
-      const originalQuery = window.navigator.permissions.query;
-      window.navigator.permissions.query = (parameters: any) => (
-        parameters.name === 'notifications' ?
-          Promise.resolve({ state: Notification.permission } as PermissionStatus) :
-          originalQuery(parameters)
-      );
-
-      // Mock plugins
-      Object.defineProperty(navigator, 'plugins', {
-        get: () => [1, 2, 3, 4, 5],
-      });
-
-      // Mock languages
-      Object.defineProperty(navigator, 'languages', {
-        get: () => ['fr-FR', 'fr', 'en-US', 'en'],
-      });
+    this.contextCreationLock = new Promise<void>((resolve) => {
+      releaseLock = resolve;
     });
 
-    return context;
+    try {
+      // Wait for previous context creation to complete
+      await previousLock;
+
+      const browser = await this.getBrowser();
+
+      // Default realistic browser configuration
+      const contextOptions = {
+        userAgent: options?.userAgent ||
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        viewport: options?.viewport || { width: 1920, height: 1080 },
+        locale: options?.locale || 'fr-FR',
+        timezoneId: options?.timezoneId || 'Europe/Paris',
+        // Additional anti-bot features
+        extraHTTPHeaders: {
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+          'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+          'Accept-Encoding': 'gzip, deflate, br',
+          'DNT': '1',
+          'Connection': 'keep-alive',
+          'Upgrade-Insecure-Requests': '1',
+          'Sec-Fetch-Dest': 'document',
+          'Sec-Fetch-Mode': 'navigate',
+          'Sec-Fetch-Site': 'none',
+          'Sec-Fetch-User': '?1',
+          'Cache-Control': 'max-age=0',
+        },
+      };
+
+      const context = await browser.newContext(contextOptions);
+
+      // Add script to mask automation
+      await context.addInitScript(() => {
+        // Remove webdriver property
+        Object.defineProperty(navigator, 'webdriver', {
+          get: () => false,
+        });
+
+        // Mock chrome object
+        (window as any).chrome = {
+          runtime: {},
+        };
+
+        // Mock permissions
+        const originalQuery = window.navigator.permissions.query;
+        window.navigator.permissions.query = (parameters: any) => (
+          parameters.name === 'notifications' ?
+            Promise.resolve({ state: Notification.permission } as PermissionStatus) :
+            originalQuery(parameters)
+        );
+
+        // Mock plugins
+        Object.defineProperty(navigator, 'plugins', {
+          get: () => [1, 2, 3, 4, 5],
+        });
+
+        // Mock languages
+        Object.defineProperty(navigator, 'languages', {
+          get: () => ['fr-FR', 'fr', 'en-US', 'en'],
+        });
+      });
+
+      return context;
+    } finally {
+      // Release lock after context creation completes (success or failure)
+      releaseLock();
+    }
   }
 
   /**
@@ -253,23 +270,97 @@ export class LightpandaService implements OnModuleDestroy {
       viewport?: { width: number; height: number };
     },
   ): Promise<T> {
-    const context = await this.createContext(contextOptions);
-    const page = await context.newPage();
+    const maxRetries = 3;
+    let lastError: Error;
 
-    try {
-      return await fn(page);
-    } finally {
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      let context: BrowserContext | null = null;
+      let page: Page | null = null;
+
       try {
-        await page.close();
+        // Create context with retry on CDP errors
+        try {
+          context = await this.createContext(contextOptions);
+        } catch (contextError) {
+          // Handle CDP errors during context creation
+          if (contextError.message?.includes('cdpSession') ||
+              contextError.message?.includes('Target page, context or browser has been closed')) {
+            this.logger.warn(`CDP error creating context (attempt ${attempt}/${maxRetries}): ${contextError.message}`);
+            if (attempt < maxRetries) {
+              await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Exponential backoff
+              continue;
+            }
+          }
+          throw contextError;
+        }
+
+        // Create page with retry on CDP errors
+        try {
+          page = await context.newPage();
+        } catch (pageError) {
+          // Handle CDP errors during page creation
+          if (pageError.message?.includes('cdpSession') ||
+              pageError.message?.includes('Target page, context or browser has been closed')) {
+            this.logger.warn(`CDP error creating page (attempt ${attempt}/${maxRetries}): ${pageError.message}`);
+            if (attempt < maxRetries) {
+              // Clean up context before retry
+              try {
+                await context?.close();
+              } catch {}
+              await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+              continue;
+            }
+          }
+          throw pageError;
+        }
+
+        // Execute the function
+        return await fn(page);
+
       } catch (error) {
-        this.logger.warn(`Error closing page: ${error.message}`);
-      }
-      try {
-        await context.close();
-      } catch (error) {
-        this.logger.warn(`Error closing context: ${error.message}`);
+        lastError = error;
+
+        // If it's a CDP error and we have retries left, retry
+        const isCDPError = error.message?.includes('cdpSession') ||
+                          error.message?.includes('Target page, context or browser has been closed') ||
+                          error.message?.includes('Session closed');
+
+        if (isCDPError && attempt < maxRetries) {
+          this.logger.warn(`CDP error during page operation (attempt ${attempt}/${maxRetries}), retrying...`);
+          await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+        } else {
+          throw error;
+        }
+
+      } finally {
+        // Cleanup with error suppression
+        if (page) {
+          try {
+            await page.close();
+          } catch (error) {
+            // Suppress CDP errors during cleanup
+            if (!error.message?.includes('cdpSession') &&
+                !error.message?.includes('Target page, context or browser has been closed')) {
+              this.logger.warn(`Error closing page: ${error.message}`);
+            }
+          }
+        }
+        if (context) {
+          try {
+            await context.close();
+          } catch (error) {
+            // Suppress CDP errors during cleanup
+            if (!error.message?.includes('cdpSession') &&
+                !error.message?.includes('Target page, context or browser has been closed')) {
+              this.logger.warn(`Error closing context: ${error.message}`);
+            }
+          }
+        }
       }
     }
+
+    // All retries exhausted
+    throw lastError;
   }
 
   /**

@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../app.module';
 import { NetlinkScraperService } from '../modules/paperclub/services/netlink-scraper.service';
+import { NetlinkService } from '../modules/paperclub/services/netlink.service';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
@@ -20,25 +21,56 @@ async function testNetlinkScraper() {
 
   const app = await NestFactory.createApplicationContext(AppModule);
   const scraperService = app.get(NetlinkScraperService);
+  const netlinkService = app.get(NetlinkService);
 
   try {
-    // Test 1: Test scraping on a small sample
-    console.log('\n1. Testing scraping on sample netlinks...');
-    const sampleResults = await scraperService.testScraping(3);
-
-    console.log('\nSample Results:');
-    sampleResults.forEach((result, index) => {
-      console.log(`\n  ${index + 1}. ${result.url}`);
-      console.log(`     Success: ${result.success}`);
-      if (result.success) {
-        console.log(`     Data:`, JSON.stringify(result, null, 6));
-      } else {
-        console.log(`     Error: ${result.error}`);
-      }
+    // Scrape all netlinks
+    console.log('\n1. Fetching all netlinks from dashboard...');
+    const netlinks = await netlinkService.fetchAllNetlinks({
+      limit: 100,
+      onProgress: (page, totalPages, itemCount) => {
+        console.log(`   Fetching: Page ${page}/${totalPages} (${itemCount} items)`);
+      },
     });
 
-    const successCount = sampleResults.filter(r => r.success).length;
-    console.log(`\n✓ Test complete: ${successCount}/${sampleResults.length} successful`);
+    console.log(`\n✓ Fetched ${netlinks.length} netlinks. Starting scraping...\n`);
+
+    // Scrape the netlinks with timeout
+    let results;
+    try {
+      const scrapePromise = scraperService.scrapeNetlinks(netlinks, {
+        concurrency: 3,
+        timeout: 30000,
+        retries: 2,
+        delay: 500,
+        skipErrors: true,
+        enableDomDetailer: false, // Disable DomDetailer to avoid hanging
+        onProgress: (current, total, url) => {
+          const percentage = ((current / total) * 100).toFixed(1);
+          process.stdout.write(
+            `\r   Progress: ${percentage}% (${current}/${total}) - ${url.slice(0, 50)}...`
+          );
+        },
+      });
+
+      // Add a timeout wrapper
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Scraping timed out after 10 minutes')), 10 * 60 * 1000);
+      });
+
+      results = await Promise.race([scrapePromise, timeoutPromise]);
+      console.log('\n\n✓ Scraping completed!');
+    } catch (error) {
+      console.error('\n\n✗ Scraping failed or timed out:', error.message);
+      throw error;
+    }
+    console.log('\nScraping Results:');
+    const successCount = results.filter(r => r.success).length;
+    const failedCount = results.filter(r => !r.success).length;
+    console.log(`  Total: ${results.length}`);
+    console.log(`  ✓ Successful: ${successCount}`);
+    console.log(`  ✗ Failed: ${failedCount}`);
+    console.log(`  Success rate: ${results.length > 0 ? ((successCount / results.length) * 100).toFixed(1) : 0}%`);
 
     if (successCount === 0) {
       console.log('\n⚠ Warning: No successful scrapes. Check if:');
@@ -47,33 +79,35 @@ async function testNetlinkScraper() {
       console.log('  - extractData() method is implemented');
     }
 
-    // Test 2: Post results to batch upsert endpoint
-    console.log('\n2. Testing batch upsert to API...');
+    // Post results to batch upsert endpoint
+    console.log('\n2. Posting results to API...');
+    console.log(`   Sending ${results.length} items to /netlink/additionalInfo/upsert`);
+
     try {
-      await scraperService.postBatchResults(sampleResults);
+      await scraperService.postBatchResults(results);
       console.log('✓ Batch upsert completed successfully');
     } catch (error) {
       console.error('✗ Batch upsert failed:', error.message);
+      if (error.response) {
+        console.error('Response:', JSON.stringify(error.response.data, null, 2));
+      }
     }
 
     console.log('\n' + '='.repeat(60));
-    console.log('NEXT STEPS');
+    console.log('TEST COMPLETE');
     console.log('='.repeat(60));
-    console.log('\n1. Implement the extractData() method in netlink-scraper.service.ts');
-    console.log('2. Define what data you want to scrape from each netlink');
-    console.log('3. Test again with: npm run test:netlink-scraper');
-    console.log('\nAvailable commands:');
-    console.log('  npm run test:netlink-scraper sample    - Test on sample');
-    console.log('  npm run test:netlink-scraper batch     - Batch scraping example');
-    console.log('  npm run test:netlink-scraper save      - Scrape and save to file');
 
   } catch (error) {
     console.error('\n✗ Test failed:', error.message);
     console.error(error.stack);
-    process.exit(1);
-  } finally {
     await app.close();
+    process.exit(1);
   }
+
+  // Force exit after closing app
+  await app.close();
+  console.log('\n✓ Application closed. Exiting...');
+  process.exit(0);
 }
 
 /**

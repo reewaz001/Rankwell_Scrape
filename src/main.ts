@@ -10,12 +10,13 @@ import { DashboardHttpClient } from './common/dashboard-http-client.service';
 const logger = new Logger('Main');
 
 /**
- * Bootstrap the NestJS application
+ * Bootstrap the NestJS application with cron jobs
  */
 async function bootstrap() {
   const bootstrapLogger = new Logger('Bootstrap');
 
-  const app = await NestFactory.createApplicationContext(AppModule, {
+  // Create HTTP application (ready for REST API endpoints)
+  const app = await NestFactory.create(AppModule, {
     logger: ['log', 'error', 'warn', 'debug'],
   });
 

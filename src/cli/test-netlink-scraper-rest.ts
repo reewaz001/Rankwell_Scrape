@@ -67,6 +67,23 @@ async function fetchNetlinksFromAPI(
  * Main test function - Fetch and scrape netlinks
  */
 async function testNetlinkScraperWithREST() {
+  // Global handler for unhandled promise rejections from playwright-extra stealth plugin
+  // These CDP errors occur during cleanup and can be safely ignored
+  process.on('unhandledRejection', (reason: any) => {
+    const message = reason?.message || String(reason);
+
+    // Suppress CDP session errors from playwright-extra cleanup
+    if (message?.includes('cdpSession') ||
+        message?.includes('Target page, context or browser has been closed') ||
+        message?.includes('Session closed')) {
+      console.log('[Suppressed CDP cleanup error]');
+      return;
+    }
+
+    // Re-throw other unhandled rejections
+    throw reason;
+  });
+
   console.log('='.repeat(60));
   console.log('TESTING NETLINK SCRAPER SERVICE WITH REST API');
   console.log('='.repeat(60));
@@ -88,20 +105,31 @@ async function testNetlinkScraperWithREST() {
     console.log(`\n1. Starting scrape for ${netlinks.length} netlinks...`);
 
     // Scrape the netlinks
-    const results = await scraperService.scrapeNetlinks(netlinks, {
-      concurrency: 3,
-      timeout: 30000,
-      retries: 2,
-      delay: 500,
-      onProgress: (current, total, url) => {
-        const percentage = ((current / total) * 100).toFixed(1);
-        process.stdout.write(
-          `\r   Progress: ${percentage}% (${current}/${total}) - ${url.slice(0, 50)}...`
-        );
-      },
-    });
+    let results;
+    try {
+      results = await scraperService.scrapeNetlinks(netlinks, {
+        concurrency: 3,
+        timeout: 120000,
+        retries: 2,
+        delay: 500,
+        skipErrors: true,
+        enableDomDetailer: false,
+        onProgress: (current, total, url) => {
+          const percentage = ((current / total) * 100).toFixed(1);
+          process.stdout.write(
+            `\r   Progress: ${percentage}% (${current}/${total}) - ${url.slice(0, 50)}...`
+          );
+        },
+      });
+    } catch (error) {
+      console.error('\n\n✗ Scraping failed:', error.message);
+      throw error;
+    }
 
-    console.log('\n');
+    // Clear the progress line and show completion
+    process.stdout.write('\r' + ' '.repeat(100) + '\r');
+    console.log('\n✓ Scraping completed!');
+    console.log(`   Collected ${results.length} results`);
 
     // Display results summary
     const successCount = results.filter(r => r.success).length;
@@ -143,11 +171,15 @@ async function testNetlinkScraperWithREST() {
 
     // Post results to batch upsert endpoint
     console.log('\n2. Posting results back to API...');
+    console.log(`   Preparing ${results.length} results for batch upsert...`);
+
     try {
       await scraperService.postBatchResults(results);
-      console.log('✓ Batch upsert completed successfully');
+      console.log('   ✓ Batch upsert completed successfully');
     } catch (error) {
-      console.error('✗ Batch upsert failed:', error.message);
+      console.error('   ✗ Batch upsert failed:', error.message);
+      console.error('   Stack:', error.stack);
+      // Don't throw - we still want to show summary and exit gracefully
     }
 
     console.log('\n' + '='.repeat(60));
@@ -156,17 +188,43 @@ async function testNetlinkScraperWithREST() {
 
   } catch (error) {
     console.error('\n✗ Test failed:', error.message);
-    console.error(error.stack);
+    console.error('Stack trace:', error.stack);
+    try {
+      await app.close();
+    } catch (closeError) {
+      console.error('Error closing app:', closeError.message);
+    }
     process.exit(1);
-  } finally {
-    await app.close();
   }
+
+  console.log('\nClosing application...');
+  try {
+    await Promise.race([
+      app.close(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout closing app')), 5000))
+    ]);
+    console.log('✓ Application closed successfully');
+  } catch (error) {
+    console.error('✗ Error closing application:', error.message);
+  }
+
+  console.log('✓ Exiting...');
+  process.exit(0);
 }
 
 /**
  * Batch scraping with pagination - Scrape all pages
  */
 async function batchScrapeAllPages() {
+  // Global handler for unhandled promise rejections from playwright-extra stealth plugin
+  process.on('unhandledRejection', (reason: any) => {
+    const message = reason?.message || String(reason);
+    if (message?.includes('cdpSession') || message?.includes('Target page, context or browser has been closed') || message?.includes('Session closed')) {
+      return; // Suppress CDP cleanup errors
+    }
+    throw reason;
+  });
+
   console.log('\n' + '='.repeat(60));
   console.log('BATCH SCRAPING ALL PAGES FROM REST API');
   console.log('='.repeat(60));
@@ -206,9 +264,11 @@ async function batchScrapeAllPages() {
       // Scrape the netlinks
       const results = await scraperService.scrapeNetlinks(netlinks, {
         concurrency: 2,
-        timeout: 30000,
+        timeout: 120000,
         retries: 2,
         delay: 500,
+        skipErrors: true,
+        enableDomDetailer: false,
         onProgress: (current, total, url) => {
           const percentage = ((current / total) * 100).toFixed(1);
           process.stdout.write(
@@ -269,15 +329,28 @@ async function batchScrapeAllPages() {
   } catch (error) {
     console.error('Batch scraping failed:', error.message);
     console.error(error.stack);
-  } finally {
     await app.close();
+    process.exit(1);
   }
+
+  await app.close();
+  console.log('\n✓ Application closed. Exiting...');
+  process.exit(0);
 }
 
 /**
  * Scrape and save results to single file
  */
 async function scrapeAndSaveToFile() {
+  // Global handler for unhandled promise rejections from playwright-extra stealth plugin
+  process.on('unhandledRejection', (reason: any) => {
+    const message = reason?.message || String(reason);
+    if (message?.includes('cdpSession') || message?.includes('Target page, context or browser has been closed') || message?.includes('Session closed')) {
+      return; // Suppress CDP cleanup errors
+    }
+    throw reason;
+  });
+
   console.log('\n' + '='.repeat(60));
   console.log('SCRAPE FROM REST API AND SAVE TO FILE');
   console.log('='.repeat(60));
@@ -303,9 +376,11 @@ async function scrapeAndSaveToFile() {
 
     const results = await scraperService.scrapeNetlinks(netlinks, {
       concurrency: 3,
-      timeout: 30000,
+      timeout: 120000,
       retries: 2,
       delay: 500,
+      skipErrors: true,
+      enableDomDetailer: false,
       onProgress: (current, total, url) => {
         const percentage = ((current / total) * 100).toFixed(1);
         process.stdout.write(
@@ -314,7 +389,8 @@ async function scrapeAndSaveToFile() {
       },
     });
 
-    console.log('\n\nSaving results...');
+    console.log('\n\n✓ Scraping completed!');
+    console.log('\nSaving results...');
 
     // Save results to file
     const outputDir = path.join(process.cwd(), 'scraped-data');
@@ -349,9 +425,13 @@ async function scrapeAndSaveToFile() {
   } catch (error) {
     console.error('Scraping failed:', error.message);
     console.error(error.stack);
-  } finally {
     await app.close();
+    process.exit(1);
   }
+
+  await app.close();
+  console.log('\n✓ Application closed. Exiting...');
+  process.exit(0);
 }
 
 /**

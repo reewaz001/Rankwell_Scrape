@@ -565,25 +565,35 @@ export class NetlinkScraperService {
         this.logger.debug(`Scraping ${url} (attempt ${attempt}/${retries})`);
 
         const scrapedData = await this.lightpanda.withPage(async (page) => {
-          // Set timeout for page operations
-          page.setDefaultTimeout(timeout);
+          try {
+            // Set timeout for page operations
+            page.setDefaultTimeout(timeout);
 
-          // Navigate to URL and capture response
-          const response = await page.goto(url, {
-            waitUntil: 'domcontentloaded',
-            timeout,
-          });
+            // Navigate to URL and capture response
+            const response = await page.goto(url, {
+              waitUntil: 'domcontentloaded',
+              timeout,
+            });
 
-          // Get status code from response
-          const statusCode = response?.status();
+            // Get status code from response
+            const statusCode = response?.status();
 
-          // Extract data using the extractData method
-          const extractedData = await this.extractData(page, url, landingPage);
+            // Extract data using the extractData method
+            const extractedData = await this.extractData(page, url, landingPage);
 
-          return {
-            ...extractedData,
-            statusCode,
-          };
+            return {
+              ...extractedData,
+              statusCode,
+            };
+          } catch (pageError) {
+            // Handle CDP session errors that occur during page operations
+            if (pageError.message?.includes('Target page, context or browser has been closed') ||
+                pageError.message?.includes('cdpSession.send') ||
+                pageError.message?.includes('Session closed')) {
+              this.logger.warn(`CDP session closed during ${url} processing`);
+            }
+            throw pageError; // Re-throw to be caught by outer catch
+          }
         });
 
         // Return successful result
@@ -597,9 +607,21 @@ export class NetlinkScraperService {
 
       } catch (error) {
         lastError = error;
-        this.logger.warn(
-          `Attempt ${attempt}/${retries} failed for ${url}: ${error.message}`
-        );
+
+        // Handle CDP session errors gracefully (browser/page already closed)
+        const isCDPError = error.message?.includes('Target page, context or browser has been closed') ||
+                          error.message?.includes('cdpSession.send') ||
+                          error.message?.includes('Session closed');
+
+        if (isCDPError) {
+          this.logger.warn(
+            `Attempt ${attempt}/${retries} failed for ${url}: Browser session closed (likely timeout)`
+          );
+        } else {
+          this.logger.warn(
+            `Attempt ${attempt}/${retries} failed for ${url}: ${error.message}`
+          );
+        }
 
         if (attempt < retries) {
           // Wait before retry (exponential backoff)
@@ -651,6 +673,7 @@ export class NetlinkScraperService {
     }
 
     this.logger.log(`Starting to scrape ${netlinks.length} netlinks with concurrency ${concurrency}`);
+    this.logger.debug(`Queue initialized with ${netlinks.length} items`);
 
     const results: ScrapedNetlinkData[] = [];
     const queue = [...netlinks];
@@ -659,16 +682,22 @@ export class NetlinkScraperService {
     const netlinkMap = new Map(netlinks.map(n => [n.url_bought || n.url, n]));
 
     return new Promise((resolve, reject) => {
+      // No global timeout - rely on per-item timeout (2 minutes per URL)
+      // Each item has its own timeout, so workers will complete naturally
+
       const worker = async () => {
         while (queue.length > 0) {
           const netlink = queue.shift();
-          if (!netlink) break;
+          if (!netlink) {
+            this.logger.debug(`Worker exiting: netlink is undefined, queue.length=${queue.length}`);
+            break;
+          }
 
           activeWorkers++;
-          completed++;
 
           // Extract URL from netlink - using url_bought field
           const url = netlink.url_bought || netlink.url || netlink.link || netlink.href;
+          this.logger.debug(`Worker started item #${completed + 1}: activeWorkers=${activeWorkers}, queue.length=${queue.length}, url=${url?.substring(0, 50)}`);
 
           if (!url) {
             this.logger.warn(`Netlink has no URL property: ${JSON.stringify(netlink)}`);
@@ -677,16 +706,36 @@ export class NetlinkScraperService {
           }
 
           try {
-            // Progress callback
+            // Progress callback (called before processing)
             if (onProgress) {
-              onProgress(completed, netlinks.length, url);
+              onProgress(completed + 1, netlinks.length, url);
             }
 
             // Extract landing_page from netlink
             const landingPage = netlink.landing_page;
 
-            // Scrape the netlink with landing_page
-            const result = await this.scrapeNetlink(url, landingPage, { timeout, retries });
+            // Scrape the netlink with landing_page - with hard timeout protection
+            // Maximum time: (timeout * retries) + buffer for retries
+            const maxTime = timeout * retries + 10000; // Add 10s buffer
+
+            let result: ScrapedNetlinkData;
+            try {
+              result = await Promise.race([
+                this.scrapeNetlink(url, landingPage, { timeout, retries }),
+                new Promise<never>((_, reject) =>
+                  setTimeout(() => reject(new Error(`Hard timeout after ${maxTime}ms`)), maxTime)
+                ),
+              ]);
+            } catch (timeoutError) {
+              this.logger.warn(`Hard timeout hit for ${url}: ${timeoutError.message}`);
+              result = {
+                url,
+                landingPage,
+                scrapedAt: new Date().toISOString(),
+                success: false,
+                error: `Timeout: ${timeoutError.message}`,
+              };
+            }
 
             // Add netlink ID if available
             if (netlink.id) {
@@ -736,10 +785,14 @@ export class NetlinkScraperService {
             }
 
             if (!skipErrors) {
+              activeWorkers--; // Decrement before rejecting
               reject(error);
               return;
             }
           }
+
+          // Increment completed count AFTER processing
+          completed++;
 
           // Delay between requests
           if (delay > 0 && queue.length > 0) {
@@ -747,9 +800,36 @@ export class NetlinkScraperService {
           }
 
           activeWorkers--;
+          this.logger.debug(`Worker finished item: activeWorkers=${activeWorkers}, queue.length=${queue.length}, completed=${completed}`);
+
+          // Check if all work is done (check inside loop too, not just after)
+          if (activeWorkers === 0 && queue.length === 0) {
+            this.logger.log(`✓ All workers finished! Resolving with ${results.length} results`);
+            // Finalize and resolve
+            if (enableDomDetailer) {
+              this.logger.log('Scraping complete. Starting DomDetailer checks...');
+              try {
+                await this.checkDomDetailerForResults(results, {
+                  domDetailerConcurrency,
+                  enableLogging,
+                });
+              } catch (error) {
+                this.logger.error(`DomDetailer check failed: ${error.message}`);
+                if (enableLogging) {
+                  await this.writeLog(`ERROR: DomDetailer check failed: ${error.message}`);
+                }
+              }
+            }
+
+            if (enableLogging) {
+              await this.finalizeLogging();
+            }
+            resolve(results);
+            return;
+          }
         }
 
-        // All workers finished
+        // Double-check after loop exits (shouldn't be needed, but just in case)
         if (activeWorkers === 0 && queue.length === 0) {
 
           // Finalize logging if enabled

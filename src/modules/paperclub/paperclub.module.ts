@@ -11,6 +11,7 @@ import { DatabaseService } from '../../common/database.service';
 import { LightpandaService } from '../../common/lightpanda.service';
 import { DashboardHttpClient } from '../../common/dashboard-http-client.service';
 import { DomDetailerService } from '../../common/domdetailer.service';
+import { GoogleSearchConsoleService } from '../../common/google-search-console.service';
 
 /**
  * Paper.club Module
@@ -37,6 +38,7 @@ import { DomDetailerService } from '../../common/domdetailer.service';
     LightpandaService,
     DashboardHttpClient,
     DomDetailerService,
+    GoogleSearchConsoleService,
   ],
   exports: [
     PaperClubScraperService,
@@ -48,6 +50,7 @@ import { DomDetailerService } from '../../common/domdetailer.service';
     LightpandaService,
     DashboardHttpClient,
     DomDetailerService,
+    GoogleSearchConsoleService,
   ],
 })
 export class PaperClubModule {}

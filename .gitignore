@@ -41,3 +41,10 @@ test-results/
 # Temporary files
 *.tmp
 .temp/
+
+scaraped-data/
+gsc-exports/
+
+# Service account credentials
+global_config/dashboard-service-account.json
+*-service-account.json

@@ -23,78 +23,107 @@ async function testNetlinkScraper() {
   const scraperService = app.get(NetlinkScraperService);
   const netlinkService = app.get(NetlinkService);
 
+  const BATCH_SIZE = 200; // Fetch 200 netlinks per batch
+  let currentPage = 1;
+  let hasNextPage = true;
+  let totalProcessed = 0;
+  let totalSuccess = 0;
+  let totalFailed = 0;
+
   try {
-    // Scrape all netlinks
-    console.log('\n1. Fetching all netlinks from dashboard...');
-    const netlinks = await netlinkService.fetchAllNetlinks({
-      limit: 100,
-      onProgress: (page, totalPages, itemCount) => {
-        console.log(`   Fetching: Page ${page}/${totalPages} (${itemCount} items)`);
-      },
-    });
+    while (hasNextPage) {
+      // 1. Fetch batch of 200 netlinks
+      console.log(`\n${'='.repeat(60)}`);
+      console.log(`BATCH ${currentPage}: Fetching ${BATCH_SIZE} netlinks (page ${currentPage})...`);
+      console.log('='.repeat(60));
 
-    console.log(`\n✓ Fetched ${netlinks.length} netlinks. Starting scraping...\n`);
+      const response = await netlinkService.fetchPage(currentPage, BATCH_SIZE);
+      const netlinks = response.data;
+      const pagination = response.pagination;
 
-    // Scrape the netlinks with timeout
-    let results;
-    try {
-      const scrapePromise = scraperService.scrapeNetlinks(netlinks, {
-        concurrency: 3,
-        timeout: 30000,
-        retries: 2,
-        delay: 500,
-        skipErrors: true,
-        enableDomDetailer: false, // Disable DomDetailer to avoid hanging
-        onProgress: (current, total, url) => {
-          const percentage = ((current / total) * 100).toFixed(1);
-          process.stdout.write(
-            `\r   Progress: ${percentage}% (${current}/${total}) - ${url.slice(0, 50)}...`
-          );
-        },
-      });
+      console.log(`✓ Fetched ${netlinks.length} netlinks`);
+      console.log(`  Page: ${pagination.currentPage}/${pagination.totalPages}`);
+      console.log(`  Total items: ${pagination.totalItems}`);
+      console.log(`  Has next page: ${pagination.hasNextPage}`);
 
-      // Add a timeout wrapper
-      const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Scraping timed out after 10 minutes')), 10 * 60 * 1000);
-      });
+      if (netlinks.length === 0) {
+        console.log('No more netlinks to process.');
+        break;
+      }
 
-      results = await Promise.race([scrapePromise, timeoutPromise]);
-      console.log('\n\n✓ Scraping completed!');
-    } catch (error) {
-      console.error('\n\n✗ Scraping failed or timed out:', error.message);
-      throw error;
-    }
-    console.log('\nScraping Results:');
-    const successCount = results.filter(r => r.success).length;
-    const failedCount = results.filter(r => !r.success).length;
-    console.log(`  Total: ${results.length}`);
-    console.log(`  ✓ Successful: ${successCount}`);
-    console.log(`  ✗ Failed: ${failedCount}`);
-    console.log(`  Success rate: ${results.length > 0 ? ((successCount / results.length) * 100).toFixed(1) : 0}%`);
+      // 2. Scrape all netlinks in this batch
+      console.log(`\nScraping ${netlinks.length} netlinks...`);
 
-    if (successCount === 0) {
-      console.log('\n⚠ Warning: No successful scrapes. Check if:');
-      console.log('  - Dashboard API is running');
-      console.log('  - Netlinks have valid URLs');
-      console.log('  - extractData() method is implemented');
-    }
+      let results;
+      try {
+        const scrapePromise = scraperService.scrapeNetlinks(netlinks, {
+          concurrency: 3,
+          timeout: 30000,
+          retries: 2,
+          delay: 500,
+          skipErrors: true,
+          enableDomDetailer: false,
+          onProgress: (current, total, url) => {
+            const percentage = ((current / total) * 100).toFixed(1);
+            process.stdout.write(
+              `\r   Progress: ${percentage}% (${current}/${total}) - ${url.slice(0, 50)}...`
+            );
+          },
+        });
 
-    // Post results to batch upsert endpoint
-    console.log('\n2. Posting results to API...');
-    console.log(`   Sending ${results.length} items to /netlink/additionalInfo/upsert`);
+        // Add a timeout wrapper (10 minutes per batch)
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Batch scraping timed out after 10 minutes')), 10 * 60 * 1000);
+        });
 
-    try {
-      await scraperService.postBatchResults(results);
-      console.log('✓ Batch upsert completed successfully');
-    } catch (error) {
-      console.error('✗ Batch upsert failed:', error.message);
-      if (error.response) {
-        console.error('Response:', JSON.stringify(error.response.data, null, 2));
+        results = await Promise.race([scrapePromise, timeoutPromise]);
+        console.log('\n✓ Batch scraping completed!');
+      } catch (error) {
+        console.error('\n✗ Batch scraping failed:', error.message);
+        // Continue to next batch even if this one fails
+        hasNextPage = pagination.hasNextPage;
+        currentPage++;
+        continue;
+      }
+
+      // 3. Show batch results
+      const successCount = results.filter(r => r.success).length;
+      const failedCount = results.filter(r => !r.success).length;
+      totalProcessed += results.length;
+      totalSuccess += successCount;
+      totalFailed += failedCount;
+
+      console.log(`\nBatch ${currentPage} Results:`);
+      console.log(`  Total: ${results.length}`);
+      console.log(`  ✓ Successful: ${successCount}`);
+      console.log(`  ✗ Failed: ${failedCount}`);
+
+      // 4. Post batch results to API
+      console.log(`\nPosting batch ${currentPage} to API...`);
+      try {
+        await scraperService.postBatchResults(results);
+        console.log('✓ Batch upsert completed successfully');
+      } catch (error) {
+        console.error('✗ Batch upsert failed:', error.message);
+      }
+
+      // 5. Check if there's more data
+      hasNextPage = pagination.hasNextPage;
+      currentPage++;
+
+      if (hasNextPage) {
+        console.log(`\n→ Moving to next batch (page ${currentPage})...`);
       }
     }
 
+    // Final summary
     console.log('\n' + '='.repeat(60));
-    console.log('TEST COMPLETE');
+    console.log('ALL BATCHES COMPLETE');
+    console.log('='.repeat(60));
+    console.log(`Total processed: ${totalProcessed}`);
+    console.log(`Total successful: ${totalSuccess}`);
+    console.log(`Total failed: ${totalFailed}`);
+    console.log(`Success rate: ${totalProcessed > 0 ? ((totalSuccess / totalProcessed) * 100).toFixed(1) : 0}%`);
     console.log('='.repeat(60));
 
   } catch (error) {

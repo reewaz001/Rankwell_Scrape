@@ -57,6 +57,8 @@ export interface ScrapeOptions {
   skipErrors?: boolean;
   enableLogging?: boolean;
   logFilePath?: string;
+  enableDomDetailer?: boolean;
+  domDetailerConcurrency?: number;
   onProgress?: (current: number, total: number, url: string) => void;
   onSuccess?: (data: ScrapedNetlinkData) => void | Promise<void>;
   onError?: (url: string, error: Error) => void | Promise<void>;
@@ -661,6 +663,8 @@ export class NetlinkScraperService {
       skipErrors = true,
       enableLogging = false,
       logFilePath,
+      enableDomDetailer = false,
+      domDetailerConcurrency = 2,
       onProgress,
       onSuccess,
       onError,
@@ -805,21 +809,6 @@ export class NetlinkScraperService {
           // Check if all work is done (check inside loop too, not just after)
           if (activeWorkers === 0 && queue.length === 0) {
             this.logger.log(`✓ All workers finished! Resolving with ${results.length} results`);
-            // Finalize and resolve
-            if (enableDomDetailer) {
-              this.logger.log('Scraping complete. Starting DomDetailer checks...');
-              try {
-                await this.checkDomDetailerForResults(results, {
-                  domDetailerConcurrency,
-                  enableLogging,
-                });
-              } catch (error) {
-                this.logger.error(`DomDetailer check failed: ${error.message}`);
-                if (enableLogging) {
-                  await this.writeLog(`ERROR: DomDetailer check failed: ${error.message}`);
-                }
-              }
-            }
 
             if (enableLogging) {
               await this.finalizeLogging();

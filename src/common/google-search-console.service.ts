@@ -81,8 +81,12 @@ export class GoogleSearchConsoleService {
   private initializationPromise: Promise<void>;
 
   constructor() {
-    // Initialize on service creation
-    this.initializationPromise = this.initializeAuth();
+    // Initialize on service creation (don't throw on startup - only when used)
+    this.initializationPromise = this.initializeAuth().catch((error) => {
+      this.logger.warn(`Google Search Console not available: ${error.message}`);
+      // Don't throw - allow the service to be created without credentials
+      // Methods will throw when actually called via ensureInitialized()
+    });
   }
 
   /**

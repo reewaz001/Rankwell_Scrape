@@ -19,7 +19,8 @@
       "Bash(npm run test:single-netlink:*)",
       "Bash(npm run build:*)",
       "Bash(timeout 5 ts-node:*)",
-      "Bash(npx ts-node:*)"
+      "Bash(npx ts-node:*)",
+      "Bash(npm run test:website-analysis:*)"
     ],
     "deny": [],
     "ask": []

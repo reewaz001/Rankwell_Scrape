@@ -579,14 +579,26 @@ export class RocketLinksScraperService {
   }
 
   /**
+   * Clean domain: remove https://, http://, and www. prefix
+   */
+  private cleanDomain(domain: string): string {
+    if (!domain) return domain;
+    return domain
+      .replace(/^https?:\/\//i, '')  // Remove http:// or https://
+      .replace(/^www\./i, '');        // Remove www.
+  }
+
+  /**
    * Transform raw site data to database format
    * Matches the expected backend API format
    */
   transformSiteForDB(raw: RocketLinksSiteRaw): any {
     const today = new Date().toISOString().split('T')[0]; // "2025-09-11" format
+    const domain = this.cleanDomain(raw.domain || '');
 
     return {
-      name: raw.domain,
+      name: domain,
+      url: domain ? `https://${domain}` : null,
       tf: raw.tf || null,
       cf: raw.cf || null,
       bl: raw.backlinks || null,
@@ -599,10 +611,9 @@ export class RocketLinksScraperService {
       traffic_sw: raw.similarwebTraffic || null,
       category: raw.siteCategories || null,
       entry_date: today,
-      link_ahref: raw.domain ? `https://app.ahrefs.com/site-explorer/overview/v2/subdomains/live?target=${raw.domain}` : null,
+      link_ahref: domain ? `https://app.ahrefs.com/site-explorer/overview/v2/subdomains/live?target=${domain}` : null,
       provider: 'Rocketlinks',
-      bqs_score: null,
-      bqs_score_info: null,
+      // bqs_score and bqs_score_info will be added by BQSCalculatorService
     };
   }
 
@@ -624,11 +635,15 @@ export class RocketLinksScraperService {
 
     const transformedSites = this.transformSitesForDB(sites);
 
-    this.logger.log(`Sending ${transformedSites.length} sites to database...`);
+    // Calculate BQS scores
+    this.logger.log(`Calculating BQS scores for ${transformedSites.length} sites...`);
+    const sitesWithBQS = this.bqsCalculator.addBQSScores(transformedSites);
+
+    this.logger.log(`Sending ${sitesWithBQS.length} sites to database...`);
 
     try {
-      await this.databaseService.addSites(transformedSites);
-      this.logger.log(`Successfully sent ${transformedSites.length} sites to database`);
+      await this.databaseService.addSites(sitesWithBQS);
+      this.logger.log(`Successfully sent ${sitesWithBQS.length} sites to database`);
     } catch (error) {
       this.logger.error(`Failed to send sites to database: ${error.message}`);
       throw error;

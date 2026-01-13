@@ -42,6 +42,7 @@ export interface PaperClubSiteRaw {
 export interface PaperClubSite {
   // Core fields
   name: string;
+  url: string;
   provider: string;
 
   // Hosting information

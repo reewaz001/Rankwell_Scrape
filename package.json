@@ -19,7 +19,7 @@
     "pm2:status": "pm2 status",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
-    "scrape": "ts-node src/cli/scrape-paperclub.ts",
+    "scrape:paperclub": "ts-node src/cli/scrape-paperclub.ts",
     "scrape:rocketlinks": "ts-node src/cli/scrape-rocketlinks.ts",
     "test:auth": "ts-node src/cli/test-auth.ts",
     "test:category": "ts-node src/cli/test-single-category.ts",

@@ -44,6 +44,8 @@ export class DatabaseService {
 
     try {
       this.logger.log(`Adding ${sitesArray.length} sites to database...`);
+      this.logger.log(`Endpoint: ${url}`);
+      this.logger.log(`Sample site: ${JSON.stringify(sitesArray[0])}`);
 
       const response = await firstValueFrom(
         this.httpService.post(url, sitesArray, {
@@ -56,8 +58,9 @@ export class DatabaseService {
 
       if (response.status === 200) {
         this.logger.log(
-          `Successfully added ${sitesArray.length} sites from Paper Club to database`,
+          `Successfully added ${sitesArray.length} sites to database`,
         );
+        this.logger.log(`API Response: ${JSON.stringify(response.data)}`);
         return {
           success: true,
           message: `Added ${sitesArray.length} sites`,

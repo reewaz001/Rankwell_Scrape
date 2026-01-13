@@ -14,17 +14,29 @@ export class DataTransformerService {
   /**
    * Transform raw Paper.club API response to structured site data
    */
+  /**
+   * Clean domain: remove https://, http://, and www. prefix
+   */
+  private cleanDomain(domain: string): string {
+    if (!domain) return domain;
+    return domain
+      .replace(/^https?:\/\//i, '')  // Remove http:// or https://
+      .replace(/^www\./i, '');        // Remove www.
+  }
+
   transformSite(apiData: PaperClubSiteRaw): PaperClubSite {
     const hosting = apiData.hosting || {};
     const articles = apiData.articles || [{}];
     const articlesFirst = articles[0] || {};
     const kpi = apiData.kpi || {};
     const mainTopic = apiData.mainTopic || {};
-    const name = apiData.name || '';
+    const rawName = apiData.name || '';
+    const name = this.cleanDomain(rawName);
 
     return {
       // Core fields
       name,
+      url: `https://${name}`,
       provider: 'Paper Club',
 
       // Hosting

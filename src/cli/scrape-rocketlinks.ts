@@ -4,10 +4,10 @@
  * CLI Script for RocketLinks Scraping
  *
  * Usage:
- *   npm run scrape:rocketlinks                        # Scrape single category (default: sw_adult)
- *   npm run scrape:rocketlinks -- --all               # Scrape ALL categories
+ *   npm run scrape:rocketlinks                        # Scrape ALL categories (default)
+ *   npm run scrape:rocketlinks -- --single            # Scrape single category (default: sw_adult)
+ *   npm run scrape:rocketlinks -- --category sw_adult # Scrape specific category (implies --single)
  *   npm run scrape:rocketlinks -- --login             # Just test login
- *   npm run scrape:rocketlinks -- --category sw_adult # Scrape specific category
  *   npm run scrape:rocketlinks -- --no-api            # Don't send to database
  */
 
@@ -30,9 +30,12 @@ async function main() {
     ? args[categoryIndex + 1]
     : 'sw_adult'; // Default to sw_adult for testing
 
+  // If --category is specified, it implies single mode
+  const hasCategoryFlag = categoryIndex !== -1;
+
   const options = {
     loginOnly: args.includes('--login'),
-    scrapeAll: args.includes('--all'),
+    scrapeAll: !args.includes('--single') && !hasCategoryFlag, // Default to ALL categories
     sendToAPI: !args.includes('--no-api'),
     category,
   };

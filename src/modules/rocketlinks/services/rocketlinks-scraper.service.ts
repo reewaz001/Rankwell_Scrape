@@ -16,6 +16,27 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 
 /**
+ * Price ranges for filtering catalog results
+ * Each range is [minPrice, maxPrice]
+ */
+export const PRICE_RANGES: Array<[number, number]> = [
+  [0, 50],
+  [50, 100],
+  [100, 200],
+  [200, 300],
+  [300, 400],
+  [400, 500],
+  [500, 600],
+  [600, 700],
+  [700, 800],
+  [800, 900],
+  [900, 1000],
+  [1000, 2000],
+  [2000, 5000],
+  [5000, 50000],
+];
+
+/**
  * RocketLinks Scraper Service
  *
  * Main orchestrator that coordinates:
@@ -259,7 +280,7 @@ export class RocketLinksScraperService {
 
   /**
    * Navigate to catalog page for a specific category
-   * URL format: /catalog/all/p{page}/wordCount:300/searchResultsNumber:100/category:{categoryId}
+   * URL format: /catalog/all/p{page}/minSAP:{minPrice}/maxSAP:{maxPrice}/wordCount:300/searchResultsNumber:100/category:{categoryId}
    */
   async navigateToCatalog(
     categoryId: string,
@@ -267,23 +288,39 @@ export class RocketLinksScraperService {
     options?: {
       wordCount?: number;
       searchResultsNumber?: number;
+      minPrice?: number;
+      maxPrice?: number;
     }
   ): Promise<Page> {
     if (!this.isLoggedIn || !this.context) {
       throw new Error('Not logged in. Please call login() first.');
     }
 
-    const { wordCount = 300, searchResultsNumber = 100 } = options || {};
+    const { wordCount = 300, searchResultsNumber = 100, minPrice, maxPrice } = options || {};
 
     const pages = this.context.pages();
     const page = pages[0] || await this.context.newPage();
 
-    // Build catalog URL
-    const catalogPath = `/catalog/all/p${pageNum}/wordCount:${wordCount}/searchResultsNumber:${searchResultsNumber}/category:${categoryId}`;
+    // Build catalog URL with optional price filters
+    let catalogPath = `/catalog/all/p${pageNum}`;
+
+    // Add price filters if specified
+    if (minPrice !== undefined) {
+      catalogPath += `/minSAP:${minPrice}`;
+    }
+    if (maxPrice !== undefined) {
+      catalogPath += `/maxSAP:${maxPrice}`;
+    }
+
+    catalogPath += `/wordCount:${wordCount}/searchResultsNumber:${searchResultsNumber}/category:${categoryId}`;
     const url = `${this.baseUrl}${catalogPath}`;
 
+    const priceInfo = minPrice !== undefined && maxPrice !== undefined
+      ? ` [Price: ${minPrice}-${maxPrice}€]`
+      : '';
+
     this.logger.log('='.repeat(60));
-    this.logger.log(`Navigating to catalog: ${categoryId} (page ${pageNum})`);
+    this.logger.log(`Navigating to catalog: ${categoryId} (page ${pageNum})${priceInfo}`);
     this.logger.log(`URL: ${url}`);
     this.logger.log('='.repeat(60));
 
@@ -410,7 +447,7 @@ export class RocketLinksScraperService {
   }
 
   /**
-   * Scrape all pages for a category until no results or duplicate results
+   * Scrape all pages for a category (with optional price filter) until no results or duplicate results
    * Saves to database after each page (batch of 100)
    */
   async scrapeAllPagesForCategory(
@@ -420,12 +457,18 @@ export class RocketLinksScraperService {
       searchResultsNumber?: number;
       delayBetweenPages?: number;
       sendToAPI?: boolean;
+      minPrice?: number;
+      maxPrice?: number;
     }
   ): Promise<{ totalSites: number; totalPages: number }> {
-    const { delayBetweenPages = 2000, sendToAPI = true } = options || {};
+    const { delayBetweenPages = 2000, sendToAPI = true, minPrice, maxPrice } = options || {};
+
+    const priceInfo = minPrice !== undefined && maxPrice !== undefined
+      ? ` [Price: ${minPrice}-${maxPrice}€]`
+      : '';
 
     this.logger.log('='.repeat(60));
-    this.logger.log(`SCRAPING ALL PAGES FOR CATEGORY: ${categoryId}`);
+    this.logger.log(`SCRAPING ALL PAGES FOR CATEGORY: ${categoryId}${priceInfo}`);
     this.logger.log('='.repeat(60));
 
     let totalSites = 0;
@@ -490,14 +533,109 @@ export class RocketLinksScraperService {
   }
 
   /**
-   * Scrape all categories sequentially
-   * Goes through each category, scrapes all pages, then moves to next category
+   * Scrape all price ranges for a category
+   * For each price range, scrape all pages until no results, then move to next price range
+   */
+  async scrapeAllPriceRangesForCategory(
+    categoryId: string,
+    options?: {
+      wordCount?: number;
+      searchResultsNumber?: number;
+      delayBetweenPages?: number;
+      delayBetweenPriceRanges?: number;
+      sendToAPI?: boolean;
+      priceRanges?: Array<[number, number]>;
+    }
+  ): Promise<{
+    totalSites: number;
+    totalPages: number;
+    priceRangeResults: Array<{ minPrice: number; maxPrice: number; sites: number; pages: number }>;
+  }> {
+    const {
+      delayBetweenPages = 2000,
+      delayBetweenPriceRanges = 3000,
+      sendToAPI = true,
+      priceRanges = PRICE_RANGES,
+    } = options || {};
+
+    this.logger.log('');
+    this.logger.log('#'.repeat(60));
+    this.logger.log(`SCRAPING ALL PRICE RANGES FOR CATEGORY: ${categoryId}`);
+    this.logger.log(`Total price ranges: ${priceRanges.length}`);
+    this.logger.log('#'.repeat(60));
+
+    const priceRangeResults: Array<{ minPrice: number; maxPrice: number; sites: number; pages: number }> = [];
+    let totalSites = 0;
+    let totalPages = 0;
+
+    for (let i = 0; i < priceRanges.length; i++) {
+      const [minPrice, maxPrice] = priceRanges[i];
+
+      this.logger.log('');
+      this.logger.log('-'.repeat(60));
+      this.logger.log(`PRICE RANGE ${i + 1}/${priceRanges.length}: ${minPrice}€ - ${maxPrice}€`);
+      this.logger.log('-'.repeat(60));
+
+      try {
+        const result = await this.scrapeAllPagesForCategory(categoryId, {
+          ...options,
+          delayBetweenPages,
+          sendToAPI,
+          minPrice,
+          maxPrice,
+        });
+
+        priceRangeResults.push({
+          minPrice,
+          maxPrice,
+          sites: result.totalSites,
+          pages: result.totalPages,
+        });
+
+        totalSites += result.totalSites;
+        totalPages += result.totalPages;
+
+        this.logger.log(`Price range ${minPrice}-${maxPrice}€: ${result.totalSites} sites from ${result.totalPages} pages`);
+
+      } catch (error) {
+        this.logger.error(`Failed to scrape price range ${minPrice}-${maxPrice}€: ${error.message}`);
+        priceRangeResults.push({
+          minPrice,
+          maxPrice,
+          sites: 0,
+          pages: 0,
+        });
+      }
+
+      // Delay between price ranges (except for last one)
+      if (i < priceRanges.length - 1) {
+        this.logger.log(`Waiting ${delayBetweenPriceRanges / 1000}s before next price range...`);
+        await new Promise(resolve => setTimeout(resolve, delayBetweenPriceRanges));
+      }
+    }
+
+    this.logger.log('');
+    this.logger.log('#'.repeat(60));
+    this.logger.log(`COMPLETED ALL PRICE RANGES FOR: ${categoryId}`);
+    this.logger.log(`Total price ranges scraped: ${priceRangeResults.length}`);
+    this.logger.log(`Total pages scraped: ${totalPages}`);
+    this.logger.log(`Total sites saved: ${totalSites}`);
+    this.logger.log('#'.repeat(60));
+
+    return { totalSites, totalPages, priceRangeResults };
+  }
+
+  /**
+   * Scrape all categories sequentially with price range filtering
+   * For each category, loops through all price ranges, and for each price range scrapes all pages
    */
   async scrapeAllCategories(options?: {
     delayBetweenPages?: number;
+    delayBetweenPriceRanges?: number;
     delayBetweenCategories?: number;
     sendToAPI?: boolean;
     categories?: RocketLinksCategory[];
+    priceRanges?: Array<[number, number]>;
   }): Promise<{
     totalCategories: number;
     totalSites: number;
@@ -505,14 +643,17 @@ export class RocketLinksScraperService {
   }> {
     const {
       delayBetweenPages = 2000,
+      delayBetweenPriceRanges = 3000,
       delayBetweenCategories = 5000,
       sendToAPI = true,
       categories = ROCKETLINKS_CATEGORIES,
+      priceRanges = PRICE_RANGES,
     } = options || {};
 
     this.logger.log('='.repeat(60));
-    this.logger.log('SCRAPING ALL ROCKETLINKS CATEGORIES');
+    this.logger.log('SCRAPING ALL ROCKETLINKS CATEGORIES WITH PRICE RANGES');
     this.logger.log(`Total categories: ${categories.length}`);
+    this.logger.log(`Price ranges: ${priceRanges.length} (${priceRanges[0][0]}-${priceRanges[priceRanges.length - 1][1]}€)`);
     this.logger.log('='.repeat(60));
 
     const categoryResults: Array<{ category: string; sites: number; pages: number }> = [];
@@ -527,9 +668,12 @@ export class RocketLinksScraperService {
       this.logger.log('*'.repeat(60));
 
       try {
-        const result = await this.scrapeAllPagesForCategory(category.id, {
+        // Scrape all price ranges for this category
+        const result = await this.scrapeAllPriceRangesForCategory(category.id, {
           delayBetweenPages,
+          delayBetweenPriceRanges,
           sendToAPI,
+          priceRanges,
         });
 
         categoryResults.push({
@@ -540,7 +684,7 @@ export class RocketLinksScraperService {
 
         totalSites += result.totalSites;
 
-        this.logger.log(`Category ${category.id} complete: ${result.totalSites} sites from ${result.totalPages} pages`);
+        this.logger.log(`Category ${category.id} complete: ${result.totalSites} sites from ${result.totalPages} pages across ${result.priceRangeResults.length} price ranges`);
 
       } catch (error) {
         this.logger.error(`Failed to scrape category ${category.id}: ${error.message}`);

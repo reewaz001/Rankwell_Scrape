@@ -20,7 +20,8 @@
       "Bash(npm run build:*)",
       "Bash(timeout 5 ts-node:*)",
       "Bash(npx ts-node:*)",
-      "Bash(npm run test:website-analysis:*)"
+      "Bash(npm run test:website-analysis:*)",
+      "Bash(npm run scrape:paperclub:*)"
     ],
     "deny": [],
     "ask": []

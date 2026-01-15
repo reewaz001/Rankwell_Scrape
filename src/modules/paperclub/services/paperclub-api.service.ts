@@ -22,6 +22,7 @@ export class PaperClubAPIService {
   private readonly logger = new Logger(PaperClubAPIService.name);
   private token: string | null = null;
   private tokenExpiry: Date | null = null;
+  private sessionCookie: string | null = null; // Store PHPSESSID cookie
   private readonly baseUrl: string;
   private readonly email: string;
   private readonly password: string;
@@ -52,16 +53,39 @@ export class PaperClubAPIService {
       this.logger.log(`Authenticating with Paper.club as: ${this.email}`);
 
       const response = await firstValueFrom(
-        this.httpService.post<AuthResponse>(`${this.baseUrl}/authenticate`, {
-          email: this.email,
-          password: this.password,
-        }),
+        this.httpService.post<AuthResponse>(
+          `${this.baseUrl}/authenticate`,
+          {
+            email: this.email,
+            password: this.password,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+          },
+        ),
       );
 
       if (response.status === 200 && response.data.token) {
         this.token = response.data.token;
         // Set token expiry to 24 hours from now
         this.tokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+        // Capture session cookie (PHPSESSID) from response
+        const setCookieHeader = response.headers['set-cookie'];
+        if (setCookieHeader) {
+          const cookies = Array.isArray(setCookieHeader) ? setCookieHeader : [setCookieHeader];
+          for (const cookie of cookies) {
+            if (cookie.includes('PHPSESSID')) {
+              const match = cookie.match(/PHPSESSID=[^;]+/);
+              if (match) {
+                this.sessionCookie = match[0];
+              }
+            }
+          }
+        }
 
         this.logger.log('Successfully authenticated with Paper.club API');
         return this.token;
@@ -85,12 +109,14 @@ export class PaperClubAPIService {
   }
 
   /**
-   * Get HTTP headers with authentication token
-   * Match Python's minimal headers - only send Authorization
+   * Get HTTP headers with authentication token and session cookie
    */
   private getHeaders(): Record<string, string> {
     return {
+      'Accept': 'application/json',
+      'User-Agent': 'PostmanRuntime/7.36.0',
       ...(this.token && { Authorization: `Bearer ${this.token}` }),
+      ...(this.sessionCookie && { Cookie: this.sessionCookie }),
     };
   }
 
@@ -108,41 +134,30 @@ export class PaperClubAPIService {
   ): Promise<PaperClubAPIResponse> {
     await this.ensureAuthenticated();
 
-    // Build URL manually like Python version - axios params don't work correctly
+    // Build URL manually - use native fetch to avoid axios URL encoding issues
     const url = `${this.baseUrl}/advanced_search/site?to[]=${categoryId}&p=${page}&l=${limit}`;
 
     try {
-      this.logger.debug(`Requesting URL: ${url}`);
-      this.logger.debug(`Token: ${this.token?.substring(0, 20)}...`);
+      const headers = this.getHeaders();
 
-      const response = await firstValueFrom(
-        this.httpService.get<PaperClubAPIResponse>(url, {
-          headers: this.getHeaders(),
-          validateStatus: (status) => status < 600, // Don't throw on any status
-        }),
-      );
+      // Use native fetch instead of axios to preserve exact URL (axios encodes [] differently)
+      const response = await fetch(url, {
+        method: 'GET',
+        headers,
+      });
 
-      this.logger.debug(`Response status: ${response.status}`);
+      const data = await response.json();
 
       if (response.status === 200) {
-        return response.data;
+        return data as PaperClubAPIResponse;
       } else {
         this.logger.error(`API returned status ${response.status}`);
-        this.logger.error(`Response data: ${JSON.stringify(response.data)}`);
+        this.logger.error(`Response data: ${JSON.stringify(data)}`);
         throw new Error(
-          `API request failed with status: ${response.status} - ${JSON.stringify(response.data)}`,
+          `API request failed with status: ${response.status} - ${JSON.stringify(data)}`,
         );
       }
     } catch (error) {
-      if (error.response) {
-        this.logger.error(`Error response status: ${error.response.status}`);
-        this.logger.error(
-          `Error response data: ${JSON.stringify(error.response.data)}`,
-        );
-        this.logger.error(
-          `Error response headers: ${JSON.stringify(error.response.headers)}`,
-        );
-      }
       this.logger.error(`Error fetching category page: ${error.message}`);
       throw error;
     }

@@ -4,7 +4,8 @@
  * CLI Script for RocketLinks Scraping
  *
  * Usage:
- *   npm run scrape:rocketlinks                        # Scrape ALL categories (default)
+ *   npm run scrape:rocketlinks                        # Scrape ALL categories with price ranges (default)
+ *   npm run scrape:rocketlinks -- --date 2026-01-14   # Scrape by date (no price ranges)
  *   npm run scrape:rocketlinks -- --single            # Scrape single category (default: sw_adult)
  *   npm run scrape:rocketlinks -- --category sw_adult # Scrape specific category (implies --single)
  *   npm run scrape:rocketlinks -- --login             # Just test login
@@ -30,6 +31,12 @@ async function main() {
     ? args[categoryIndex + 1]
     : 'sw_adult'; // Default to sw_adult for testing
 
+  // Get date from args (--date 2026-01-14)
+  const dateIndex = args.indexOf('--date');
+  const dateFilter = dateIndex !== -1 && args[dateIndex + 1]
+    ? args[dateIndex + 1]
+    : null;
+
   // If --category is specified, it implies single mode
   const hasCategoryFlag = categoryIndex !== -1;
 
@@ -38,12 +45,14 @@ async function main() {
     scrapeAll: !args.includes('--single') && !hasCategoryFlag, // Default to ALL categories
     sendToAPI: !args.includes('--no-api'),
     category,
+    dateFilter, // If set, use date filter instead of price ranges
   };
 
   console.log('Options:');
   console.log(`  - Login only: ${options.loginOnly}`);
   console.log(`  - Scrape all categories: ${options.scrapeAll}`);
   console.log(`  - Category: ${options.scrapeAll ? 'ALL' : options.category}`);
+  console.log(`  - Date filter: ${options.dateFilter || 'none (using price ranges)'}`);
   console.log(`  - Send to API: ${options.sendToAPI}`);
   console.log('');
 
@@ -77,11 +86,16 @@ async function main() {
       // Step 2: Scrape categories
       if (options.scrapeAll) {
         // Scrape ALL categories
-        console.log(`\nStep 2: Scraping ALL categories...\n`);
+        const modeDesc = options.dateFilter
+          ? `with date filter: ${options.dateFilter}`
+          : 'with price ranges';
+        console.log(`\nStep 2: Scraping ALL categories ${modeDesc}...\n`);
+
         const result = await scraperService.scrapeAllCategories({
           delayBetweenPages: 2000,
           delayBetweenCategories: 5000,
           sendToAPI: options.sendToAPI,
+          dateFilter: options.dateFilter,
         });
 
         console.log(`\nAll categories complete!`);
@@ -89,15 +103,31 @@ async function main() {
         console.log(`Total sites saved: ${result.totalSites}`);
       } else {
         // Scrape single category
-        console.log(`\nStep 2: Scraping category: ${options.category}...\n`);
-        const result = await scraperService.scrapeAllPagesForCategory(options.category, {
-          delayBetweenPages: 2000,
-          sendToAPI: options.sendToAPI,
-        });
+        const modeDesc = options.dateFilter
+          ? `with date filter: ${options.dateFilter}`
+          : 'with price ranges';
+        console.log(`\nStep 2: Scraping category: ${options.category} ${modeDesc}...\n`);
 
-        console.log(`\nScraping complete!`);
-        console.log(`Total pages: ${result.totalPages}`);
-        console.log(`Total sites saved: ${result.totalSites}`);
+        if (options.dateFilter) {
+          // Date mode: scrape without price ranges
+          const result = await scraperService.scrapeAllPagesForCategory(options.category, {
+            delayBetweenPages: 2000,
+            sendToAPI: options.sendToAPI,
+            dateFilter: options.dateFilter,
+          });
+          console.log(`\nScraping complete!`);
+          console.log(`Total pages: ${result.totalPages}`);
+          console.log(`Total sites saved: ${result.totalSites}`);
+        } else {
+          // Price range mode
+          const result = await scraperService.scrapeAllPriceRangesForCategory(options.category, {
+            delayBetweenPages: 2000,
+            sendToAPI: options.sendToAPI,
+          });
+          console.log(`\nScraping complete!`);
+          console.log(`Total pages: ${result.totalPages}`);
+          console.log(`Total sites saved: ${result.totalSites}`);
+        }
       }
 
       // Cleanup

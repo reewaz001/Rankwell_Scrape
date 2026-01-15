@@ -379,7 +379,13 @@ npm run example:domdetailer 3     # Run example 3 only
 npm run scrape
 
 # RocketLinks - scrape all categories
-npm run scrape:rocketlinks -- --all
+npm run scrape:rocketlinks
+
+# Default: scrape with price ranges
+  npm run scrape:rocketlinks
+
+# With date filter (no price ranges)
+  npm run scrape:rocketlinks -- --date 2026-01-14
 
 # RocketLinks - scrape single category
 npm run scrape:rocketlinks -- --category sw_travel
